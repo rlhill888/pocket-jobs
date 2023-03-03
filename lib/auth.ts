@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
 import { SignJWT, jwtVerify } from "jose";
 import { db } from "./db";
+import axios from "axios";
+
+
 
 export const hashPassword = (password) => bcrypt.hash(password, 10);
 
@@ -30,16 +33,38 @@ export const validateJWT = async (jwt) => {
 
 
 
-export const getUserFromCookie = async (cookies) => {
-  const jwt = cookies.get(process.env.COOKIE_NAME);
+export const getUserFromCookie = async (cookies: any) => {
+  
 
-  const { id } = await validateJWT(jwt.value);
+  const { id } = await validateJWT(cookies[process.env.COOKIE_NAME as string]);
+  try{
+    const user = await db.user.findUnique({
+      where: {
+        id: id as string,
+      },
+    });
+    return user;
+  }catch(error){
+    console.log(error)
+  }
+  
 
-  const user = await db.user.findUnique({
-    where: {
-      id: id as string,
-    },
-  });
-
-  return user;
+  
 };
+
+export const grabUser= async (setUser: Function, router: any) =>{
+  try{
+
+    const response = await axios({
+        url: '/api/me',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }
+    })
+    setUser(response.data)
+
+  }catch(error){
+    router.push('/signin')
+  }  
+}

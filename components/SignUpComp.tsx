@@ -1,8 +1,10 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import { register } from "@/lib/api";
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface SignUpProps
 {
@@ -17,6 +19,7 @@ export default function SignUpComp({
     doNotRedirectWhenFormIsCompleted
 
 }:SignUpProps){
+    const router = useRouter()
     const [firstName, setFirstName]= useState("")
     const [lastName, setLastName]= useState("")
     const [userName, setUserName]= useState("")
@@ -25,6 +28,31 @@ export default function SignUpComp({
     const [loading, setLoading]= useState(false)
 
     const [showPassword, setShowPassword]= useState(false)
+    useEffect(()=>{
+        async function fetchUser(){
+            try{
+    
+                const response = await axios({
+                    url: '/api/me',
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      }
+                })
+              
+                console.log(response.data)
+                router.push('/')
+            
+              }catch(error){
+                
+              }  
+           }
+           fetchUser()
+    })
+
+    const inputSx = {
+        
+    }
 
     return (
         <div>

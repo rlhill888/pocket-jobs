@@ -15,7 +15,7 @@ export default function SignIn({
     return (
         <div className="test">
 
-           <AuthForm mode={'sign in'} />
+           <AuthForm mode={'sign in'} switchBetweenLoginAndSignUp/>
 
         </div>
     )

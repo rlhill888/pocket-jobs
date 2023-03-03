@@ -14,7 +14,7 @@ export default function Register({
     return (
         <div className="register">
 
-            <AuthForm mode={'sign up'} />
+            <AuthForm mode={'sign up'} switchBetweenLoginAndSignUp/>
         </div>
     )
 
