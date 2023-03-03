@@ -1,0 +1,19 @@
+
+
+.mainBody{
+    margin: auto;
+    padding: 2%;
+    margin-top: 40px;
+    width: 30vw;
+    height: 80vh;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    overflow-y: auto;
+    -webkit-backdrop-filter: blur(5.6px);
+    text-align: center;
+    position: relative;
+}
+

@@ -1,0 +1,9 @@
+.navBar{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+button{
+    width: 100%;
+}

@@ -14,7 +14,7 @@ model User{
   id    String    @id @default(uuid())
   createdAt   DateTime    @default(now())
   password    String
-  userName   String
+  userName   String   @unique
   firstName   String
   LastName    String
   pocketedJobs PocketedJob[]

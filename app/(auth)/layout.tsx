@@ -1,6 +1,6 @@
 "use client"
 import { ReactNode } from "react";
-import "@/styles/global.css"
+import "@/styles/auth/authLayout.css";
 import { themeOptions } from "@/lib/theme"
 import { ThemeProvider} from "@mui/material/styles"
 
@@ -15,16 +15,10 @@ export default function AuthRootLayout({children}:AuthRootLayoutProps){
 
     
     return(
-        <html lang="en">
-            <body>
-            <ThemeProvider theme={themeOptions}>
-               
+      
+                <div className="mainBody">
                     {children}
-               
-            </ThemeProvider>
-                
-                
-            </body>
-        </html>
+                </div>
+            
     )
 }
