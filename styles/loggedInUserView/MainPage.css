@@ -33,6 +33,16 @@ color: white;
     margin-top: 0;
 }
 
+.toDoSList{
+    position: relative;
+    height: 90%;
+    border-radius: 12px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+}
+
 .jobBoardListsDiv{
     width: 60%;
     margin: 0;
@@ -54,6 +64,10 @@ color: white;
 }
 
 .jobBoardsList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .toDoSList::-webkit-scrollbar {
     display: none;
   }
 

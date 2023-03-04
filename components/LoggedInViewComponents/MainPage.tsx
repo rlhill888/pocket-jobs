@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
 import JobBoardCard from '../JobBoardCard';
 import ModalCard from '../ModalCard';
+import MainPageToDoCheckBox from '../MainPageToDoCheckBox';
 
 
 interface MainPageProps
@@ -53,6 +54,26 @@ export default function MainPage({
                     </GlassCard>
                     <GlassCard className='toDosDiv'>
                         <h1 style={{textAlign: "center"}} className='headerName subHeader'>{"To Dos"}</h1>
+                        <div className='toDoSList'>
+
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            v
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+
+                        </div>
                         
 
                     </GlassCard>
