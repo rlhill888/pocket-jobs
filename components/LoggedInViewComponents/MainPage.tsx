@@ -10,6 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import JobBoardCard from '../JobBoardCard';
 import ModalCard from '../ModalCard';
 import MainPageToDoCheckBox from '../MainPageToDoCheckBox';
+import TuneIcon from '@mui/icons-material/Tune';
 
 
 interface MainPageProps
@@ -54,6 +55,12 @@ export default function MainPage({
                     </GlassCard>
                     <GlassCard className='toDosDiv'>
                         <h1 style={{textAlign: "center"}} className='headerName subHeader'>{"To Dos"}</h1>
+                        <div className='toDoSettingsButton'>
+                            <IconButton color='secondary'>
+                                <TuneIcon />
+                            </IconButton>
+
+                        </div>
                         <div className='toDoSList'>
 
                             <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
