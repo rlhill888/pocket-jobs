@@ -1,0 +1,69 @@
+.navBar{
+    margin: 20px 100px;
+    padding: 0 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.iconsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.headerName{
+white-space: nowrap;
+color: white;
+  filter: drop-shadow(-3px 1px 5px #000);
+}
+
+.contentFlexDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+    margin: 40px 100px;
+
+}
+
+.toDosDiv{
+    width: 25%;
+    height: 70vh;
+    margin-top: 0;
+}
+
+.jobBoardListsDiv{
+    width: 60%;
+    margin: 0;
+    height: 70vh;
+}
+
+.jobBoardsList{
+    position: relative;
+    height: 90%;
+    border-radius: 12px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.toDoSList{
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.jobBoardsList::-webkit-scrollbar {
+    display: none;
+  }
+
+.subHeader{
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.jobBoardCard{
+    height: 15vh;
+    margin-bottom: 20px;
+
+}

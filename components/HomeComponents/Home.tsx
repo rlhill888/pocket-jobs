@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import LoggedInUserView from './LoggedInUserView';
 import WelcomeAndAboutView from './WelcomeAndAboutView';
 import Loading from '../Loading';
+import { User } from '@/lib/user';
 
 
 interface HomeProps
@@ -17,7 +18,7 @@ interface HomeProps
 export default function Home({
 
 }:HomeProps){
-    const [user, setUser]: any= useState(null)
+    const [user, setUser]: [User | null, Function]= useState(null)
     const [triedFetchingUser, setTriedFetchingUser]= useState(false)
     const router = useRouter()
     useEffect(()=>{
@@ -44,7 +45,7 @@ export default function Home({
     }, [])
 
     if(user){
-        return <LoggedInUserView></LoggedInUserView>
+        return <LoggedInUserView user={user}></LoggedInUserView>
     }
     if(!user && !triedFetchingUser){
         return <Loading></Loading>

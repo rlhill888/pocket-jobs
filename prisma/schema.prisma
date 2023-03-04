@@ -17,6 +17,7 @@ model User{
   userName   String   @unique
   firstName   String
   LastName    String
+  jobBoards JobBoard[]
   pocketedJobs PocketedJob[]
 }
 
@@ -29,7 +30,7 @@ model PocketedJob{
   companyName String
   jobUrl    String
   description String?
-  extraJobColumns   String    @default("[]")
+  jobColumns   String    @default("[]")
   rejected    Boolean   @default(false)
   offerMade Boolean @default(false)
   notes String @default("[]")
@@ -37,13 +38,28 @@ model PocketedJob{
   steps Step[]
   userId String
   user User @relation(fields: [userId], references: [id])
+  jobBoardId String
+  jobBoard JobBoard @relation(fields: [jobBoardId], references: [id])
 
   @@unique([userId, companyName, jobPositionName])
+}
+
+model JobBoard{
+  id    String    @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt DateTime @updatedAt
+  name String
+  color String
+  defaultJobColumns String @default("[]")
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  pocketedJobs PocketedJob[]
 }
 
 model Step{
   id    String    @id @default(uuid())
   name String
+  stepDescription String
   currentStep Boolean
   pocketedJobId String
   dueDate String?

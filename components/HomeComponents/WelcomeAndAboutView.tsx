@@ -34,7 +34,7 @@ export default function WelcomeAndAboutView({
             </div>
             <div className="mainContentDiv">
                 <div style={{margin: '40px'}} className="glowing-card">
-                    <h1>idk just put random</h1>
+                    <h1>Description</h1>
                 </div>
 
             </div>
