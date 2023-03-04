@@ -1,0 +1,61 @@
+.mainPocketJobDiv{
+    width:100vw;
+    height: 100vh
+}
+.pocketedJobsTitleDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.otherMainPocketedJobsDiv{
+    padding: 20px 100px;
+}
+.pocketedJobLightColor{
+    color: rgb(255, 255, 255)
+}
+
+.pocketedJobDarkColor{
+    color: black;
+}
+
+.pocketedJobCardsDivisionDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.jobDataAndNotesDiv{
+    
+}
+
+.titleAndIconDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.headerAndIconDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+
+}
+
+.pocketedJobsColumnCard{
+    width:55vw;
+    height: 30vh;
+    margin: 0;
+
+}
+
+.pocketedJbTodoDiv{
+    width: 20vw;
+}
+
+.pocketedJobTitle{
+    margin: 0;
+}
