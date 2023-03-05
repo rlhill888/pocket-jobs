@@ -1,0 +1,45 @@
+.mainAccountDiv{
+    margin: 20px 100px;
+    overflow-y: auto;
+}
+
+.otherMainAccountDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mainAccountHeaderDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerNavBarButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.userNameHeader{
+    margin: 0;
+}
+
+.glassContainerHeaderDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accountInfoDiv{
+    width: 60vw;
+    height: 65vh;
+}
+
+.accountToDosDiv{
+    width: 15vw;
+    height: 65vh;
+}
+

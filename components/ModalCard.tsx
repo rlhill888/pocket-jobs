@@ -9,6 +9,8 @@ interface ModalCardProps
     setModalOpen: Function;
     children?: ReactNode;
     color?: string;
+    height?: string | null;
+    width?: string | null;
 }
 
 export default function ModalCard({
@@ -16,6 +18,8 @@ export default function ModalCard({
     setModalOpen,
     children,
     color,
+    height,
+    width,
 }:ModalCardProps){
     if(!modalOpen){
         return(
@@ -25,16 +29,10 @@ export default function ModalCard({
         return (
         <div className='blockedOutDiv'>
             <div 
-            style={color ? 
-                {
-                    boxShadow: `box-shadow: 0 0 20px ${color}`
-                }
-                :
-                {
-
-                }
-            
-            }
+            style={{
+                height: height ? height: "50vh",
+                width: width ? width: "50vw",
+            }}
             className='innerModalDiv'>
                 <div className='childrenDiv'>
                         {children}

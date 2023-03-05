@@ -1,5 +1,5 @@
 import { User } from '@/lib/user';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import GlassCard from '../GlassCard';
 import "@/styles/loggedInUserView/MainPage.css"
 import { Button } from '@mui/material';
@@ -11,6 +11,7 @@ import JobBoardCard from '../JobBoardCard';
 import ModalCard from '../ModalCard';
 import MainPageToDoCheckBox from '../MainPageToDoCheckBox';
 import TuneIcon from '@mui/icons-material/Tune';
+import CreateNewJobBoard from '../CreateNewJobBoard';
 
 
 interface MainPageProps
@@ -22,7 +23,7 @@ export default function MainPage({
     user
 }:MainPageProps){
     const [modalOpen, setModalOpen]= useState(false)
-    const [modalChildren, setModalChildren]= useState(null)
+    const [modalChildren, setModalChildren]: [ReactNode | null, Function]= useState(null)
     return (
         <div>
             <ModalCard color='red' setModalOpen={setModalOpen} modalOpen={modalOpen}>
@@ -32,7 +33,10 @@ export default function MainPage({
                 <GlassCard className='navBar'>
                     <h1 className='headerName'>Welcome {user.firstName}</h1>
                     <div className='iconsDiv'>
-                        <Button sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
+                        <Button onClick={()=> {
+                            setModalChildren(<CreateNewJobBoard />)
+                            setModalOpen(true)
+                            }} sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
                             <CreateTwoToneIcon sx={{marginRight: '10px'}}/>
                             Create New Job Board
                         </Button>

@@ -33,7 +33,7 @@ export default function PocketedJob({
                         <div className='headerAndIconDiv'>
                             <h3>Job Data Table</h3>
                             <IconButton sx={{color: color}}>
-                            <TuneIcon sx={{color: color}}/>  
+                                <TuneIcon sx={{color: color}}/>  
                             </IconButton>
                             
 
@@ -45,7 +45,9 @@ export default function PocketedJob({
                     <GlassCard className='pocketedJobsColumnCard'>
                         <div className='headerAndIconDiv'>
                             <h3>Notes</h3>
-                            <TuneIcon sx={{color: color}}/>
+                            <IconButton sx={{color: color}}>
+                                <TuneIcon sx={{color: color}}/>  
+                            </IconButton>
                         </div>
                         
                         

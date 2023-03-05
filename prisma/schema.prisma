@@ -50,7 +50,9 @@ model JobBoard{
   updatedAt DateTime @updatedAt
   name String
   color String
+  description String
   defaultJobColumns String @default("[]")
+  allColumns String @default("[]")
   user User @relation(fields: [userId], references: [id])
   userId String
   pocketedJobs PocketedJob[]
