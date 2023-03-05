@@ -6,15 +6,17 @@ import MainPage from '../LoggedInViewComponents/MainPage';
 interface LoggedInUserViewProps
 {
     user: User;
+    refreshUserData: Function
 }
 
 export default function LoggedInUserView({
-    user
+    user,
+    refreshUserData
 }:LoggedInUserViewProps){
 
     return (
         <div>
-            <MainPage user={user}/>
+            <MainPage refreshUserData={refreshUserData} user={user}/>
         </div>
     )
 

@@ -20,7 +20,12 @@ export default function Home({
 }:HomeProps){
     const [user, setUser]: [User | null, Function]= useState(null)
     const [triedFetchingUser, setTriedFetchingUser]= useState(false)
+    const [refreshUserDataState, setRefreshUserData]= useState(0)
     const router = useRouter()
+
+    function refreshUserData(){
+        setRefreshUserData(previous=> previous+1)
+    }
     useEffect(()=>{
        async function fetchUser(){
         try{
@@ -42,10 +47,10 @@ export default function Home({
        }
        fetchUser()
             
-    }, [])
+    }, [refreshUserDataState])
 
     if(user){
-        return <LoggedInUserView user={user}></LoggedInUserView>
+        return <LoggedInUserView refreshUserData={refreshUserData} user={user}></LoggedInUserView>
     }
     if(!user && !triedFetchingUser){
         return <Loading></Loading>

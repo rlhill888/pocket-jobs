@@ -2,22 +2,31 @@ import React, { useState } from 'react';
 import "@/styles/components.css/CreateNewJobBoard.css";
 import { Button, TextField } from '@mui/material';
 import CreateNewJobBoardTable from './CreateNewJobBoardTable';
-import { ExtraJobColumn } from '@/lib/database';
+import { ExtraJobColumn, headers } from '@/lib/database';
 import { gradientButton1 } from '@/styles/materialUiStyles';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
+import { userAgent } from 'next/server';
+import { User } from '@/lib/user';
 
 interface CreateNewJobBoardProps
 {
-    
+    user: User;
+    refreshUserData: Function;
+    setModalOpen: Function;
 }
 
 export default function CreateNewJobBoard({
-
+        user,
+        refreshUserData,
+        setModalOpen
 }:CreateNewJobBoardProps){
 
     const [extraJobColumnsArray, setExtraJobColumnsArray]: [ExtraJobColumn[], Function ]= useState([])
     const [name, setName]= useState("")
     const [description, setDescription]= useState("")
+    const [loading, setLoading]= useState(false)
 
     function checkDisabled(){
         for(const column of extraJobColumnsArray){
@@ -30,6 +39,30 @@ export default function CreateNewJobBoard({
         }else{
             return false
         }
+    }
+    async function createNewJobBoard(){
+        setLoading(true)
+        try{
+
+            const response = await axios({
+                url: "/api/job_board/create_job_board",
+                headers: headers,
+                method: "POST",
+                data: {
+                    name: name,
+                    description: description,
+                    defaultJobColumns: extraJobColumnsArray,
+                    userId: user.id
+                }
+            })
+            console.log(response)
+            refreshUserData()
+            setModalOpen(false)
+
+        }catch(error){
+            console.log(error)
+        }
+        setLoading(false)
     }
 
     return (
@@ -64,8 +97,17 @@ export default function CreateNewJobBoard({
                     <CreateNewJobBoardTable extraTablesArray={extraJobColumnsArray} setExtraJobColumnsArray={setExtraJobColumnsArray}/>
 
                 </div>
-                <Button color='secondary' disabled={checkDisabled()} variant='contained'  sx={{marginTop: '20px', width: "100%"}}>
-                    Create New Job Board
+                <Button onClick={async ()=>  await createNewJobBoard()} color='secondary' disabled={checkDisabled() || loading} variant='contained'  sx={{marginTop: '20px', width: "100%"}}>
+                    {
+                        loading ? 
+                        <>
+                        <CircularProgress sx={{margin: '2px'}}/>
+                        </>
+                        :
+                        <h3 className='buttonHeader'>
+                            create job board
+                        </h3>
+                    }
                 </Button>
                 
             </div>

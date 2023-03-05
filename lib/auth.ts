@@ -42,6 +42,10 @@ export const getUserFromCookie = async (cookies: any) => {
       where: {
         id: id as string,
       },
+      include: {
+        jobBoards: true,
+        pocketedJobs: true
+      }
     });
     return user;
   }catch(error){

@@ -34,3 +34,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.buttonHeader{
+    margin: 0;
+}

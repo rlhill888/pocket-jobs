@@ -12,18 +12,22 @@ import ModalCard from '../ModalCard';
 import MainPageToDoCheckBox from '../MainPageToDoCheckBox';
 import TuneIcon from '@mui/icons-material/Tune';
 import CreateNewJobBoard from '../CreateNewJobBoard';
+import { useRouter } from 'next/navigation';
 
 
 interface MainPageProps
 {
-    user: User
+    user: User;
+    refreshUserData: Function
 }
 
 export default function MainPage({
-    user
+    user,
+    refreshUserData
 }:MainPageProps){
     const [modalOpen, setModalOpen]= useState(false)
     const [modalChildren, setModalChildren]: [ReactNode | null, Function]= useState(null)
+    const router = useRouter()
     return (
         <div>
             <ModalCard color='red' setModalOpen={setModalOpen} modalOpen={modalOpen}>
@@ -34,13 +38,15 @@ export default function MainPage({
                     <h1 className='headerName'>Welcome {user.firstName}</h1>
                     <div className='iconsDiv'>
                         <Button onClick={()=> {
-                            setModalChildren(<CreateNewJobBoard />)
+                            setModalChildren(<CreateNewJobBoard setModalOpen={setModalOpen} refreshUserData={refreshUserData} user={user}/>)
                             setModalOpen(true)
                             }} sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
                             <CreateTwoToneIcon sx={{marginRight: '10px'}}/>
                             Create New Job Board
                         </Button>
-                        <IconButton  color='secondary'>
+                        <IconButton onClick={()=>{
+                            router.push("/account")
+                        }} color='secondary'>
                             <PersonIcon />
                         </IconButton>
                     </div>
@@ -51,9 +57,13 @@ export default function MainPage({
                     <GlassCard className='jobBoardListsDiv'>
                         <h1 className='headerName subHeader'>Job Boards</h1>
                         <div className='jobBoardsList'>
-                            <JobBoardCard color='blue' setModalOpen={setModalOpen} setModalChildren={setModalChildren}/>
-                            <JobBoardCard color='pink' setModalOpen={setModalOpen} setModalChildren={setModalChildren}/>
-                            <JobBoardCard color='red' setModalOpen={setModalOpen} setModalChildren={setModalChildren}/>
+                            {
+                                user.jobBoards.map((jobBoard: any, index)=>{
+                                    return(
+                                        <JobBoardCard jobBoard={jobBoard} key={`Job board card ${jobBoard.id} ${index}`}  setModalOpen={setModalOpen} setModalChildren={setModalChildren}/>
+                                    )
+                                })
+                            }
                         </div>
                         
                     </GlassCard>

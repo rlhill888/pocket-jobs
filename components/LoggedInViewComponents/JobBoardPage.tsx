@@ -10,6 +10,8 @@ import { gradientButton1 } from '@/styles/materialUiStyles';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 import { Button } from '@mui/material';
 import WorkTwoToneIcon from '@mui/icons-material/WorkTwoTone';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { useRouter } from 'next/navigation';
 
 
 interface JobBoardPageProps
@@ -20,15 +22,28 @@ interface JobBoardPageProps
 export default function JobBoardPage({
     name
 }:JobBoardPageProps){
+    const router = useRouter()
 
     return (
         <div className='otherMainJobBoardDiv'>
             <GlassCard className='jobBoardHeaderDiv'>
                 <h1 className='jobBoardName'>{name}</h1>
+                <div>
+
+                
+                <Button
+                onClick={()=>{
+                    router.push("/")
+                }}
+                sx={{marginRight: "15px"}}>
+                    <KeyboardDoubleArrowLeftIcon />
+                    Home Page
+                </Button>
                 <Button sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
                             <WorkTwoToneIcon sx={{marginRight: '10px'}}/>
                             Pocket a Job
                 </Button>
+                </div>
             </GlassCard>
             <GlassCard className='searchDiv'>
                 <SearchIcon color='primary'/>
