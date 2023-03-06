@@ -89,3 +89,27 @@
     flex-direction: row;
     align-items: center;
 }
+
+.pocketAJobLoadingDiv{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pocketAJobLoadingHeader{
+    font-size: 3.3rem;
+    color: black;
+    background-color: #3df5a7;
+    background-image: linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% );
+    
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+.loadingHeaderAndProgressPocketAJobDiv{
+    text-align: center;
+}

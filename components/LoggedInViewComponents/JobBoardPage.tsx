@@ -107,7 +107,7 @@ export default function JobBoardPage({
                         height: "75vh"
                     })
                     setModalOpen(true)
-                    setModalChildren(<PocketAJob jobBoard={jobBoard}></PocketAJob>)
+                    setModalChildren(<PocketAJob refreshUserData={refreshUserData} setModalOpen={setModalOpen} jobBoard={jobBoard}></PocketAJob>)
                 }}
                 sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
                             <WorkTwoToneIcon sx={{marginRight: '10px'}}/>
@@ -142,7 +142,7 @@ export default function JobBoardPage({
                                 height: "75vh"
                             })
                             setModalOpen(true)
-                            setModalChildren(<PocketAJob jobBoard={jobBoard}></PocketAJob>)
+                            setModalChildren(<PocketAJob refreshUserData={refreshUserData} setModalOpen={setModalOpen} jobBoard={jobBoard}></PocketAJob>)
                         }}
                         sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
                             <WorkTwoToneIcon sx={{marginRight: '10px'}}/>

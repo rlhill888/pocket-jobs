@@ -9,11 +9,14 @@ import StepLabel from '@mui/material/StepLabel';
 import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
 import "@/styles/components.css/PocketAJob.css"
 import { gradientButton1 } from '@/styles/materialUiStyles';
+import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 
 interface PocketAJobProps
 {
     jobBoard: any;
+    setModalOpen: Function;
+    refreshUserData: Function
 }
 
 interface aStep{
@@ -24,11 +27,14 @@ interface aStep{
 }
 
 export default function PocketAJob({
-    jobBoard
+    jobBoard, 
+    setModalOpen,
+    refreshUserData
 }:PocketAJobProps){
 const extraColumns = JSON.parse(jobBoard.extraJobColumns)
 const [values, setValues]= useState(declareInitialValuesState())
 const [steps, setSteps]: [aStep[], Function]= useState([])
+const [loading, setLoading]= useState(false)
 function declareInitialValuesState(){
     const allValues = [...defaultColumns, ...extraColumns]
 
@@ -239,13 +245,25 @@ function determineDisabledButton(){
 
 
 
+    if(loading){
+        return(
+            <div className='pocketAJobLoadingDiv'>
+                <div className='loadingHeaderAndProgressPocketAJobDiv'>
+                <h1 className='pocketAJobLoadingHeader'>Pocketing your Job...</h1>
+                <CircularProgress />
 
+                </div>
+                
+            </div>
+        )
+    }
 
     return (
         <div>
             <div className='displayFlexRowHeaderJustifyContentSpaceBetween'>
                 <h2>Job Information</h2>
                 <Button onClick={ async ()=>{
+                    setLoading(true)
                     let reqDefaultValuesArray= []
                     let reqExtraValuesArray= []
 
@@ -276,9 +294,12 @@ function determineDisabledButton(){
                             }
                         })
                         console.log(response)
+                        refreshUserData()
                     }catch(error){
                         console.log(error)
                     }
+                    setModalOpen(false)
+                    setLoading(false)
                 }} 
                 variant='contained' color='secondary' disabled={determineDisabledButton()}>Pocket the Job</Button>
             </div>
