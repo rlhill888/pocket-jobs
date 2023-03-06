@@ -9,6 +9,7 @@ import StepLabel from '@mui/material/StepLabel';
 import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
 import "@/styles/components.css/PocketAJob.css"
 import { gradientButton1 } from '@/styles/materialUiStyles';
+import axios from 'axios';
 
 interface PocketAJobProps
 {
@@ -244,7 +245,7 @@ function determineDisabledButton(){
         <div>
             <div className='displayFlexRowHeaderJustifyContentSpaceBetween'>
                 <h2>Job Information</h2>
-                <Button onClick={()=>{
+                <Button onClick={ async ()=>{
                     let reqDefaultValuesArray= []
                     let reqExtraValuesArray= []
 
@@ -260,9 +261,24 @@ function determineDisabledButton(){
 
                     
 
-                    console.log("default values:", reqDefaultValuesArray)
-                    console.log("Extra values:", reqExtraValuesArray)
-                    console.log("Steps:", steps)
+                    
+
+                    try{
+                        const response = await axios({
+                            method: 'POST',
+                            url: '/api/pocketed_job/create_pocketed_job',
+                            data: {
+                                defaultValues: JSON.stringify(reqDefaultValuesArray),
+                                extraValues: JSON.stringify(reqExtraValuesArray),
+                                steps: JSON.stringify(steps),
+                                allValues: JSON.stringify(values),
+                                jobBoardId: jobBoard.id,
+                            }
+                        })
+                        console.log(response)
+                    }catch(error){
+                        console.log(error)
+                    }
                 }} 
                 variant='contained' color='secondary' disabled={determineDisabledButton()}>Pocket the Job</Button>
             </div>
