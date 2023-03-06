@@ -43,8 +43,16 @@ export const getUserFromCookie = async (cookies: any) => {
         id: id as string,
       },
       include: {
-        jobBoards: true,
-        pocketedJobs: true
+        jobBoards: {
+          include: {
+            pocketedJobs: true
+          }
+        },
+        pocketedJobs: {
+          include: {
+            jobBoard: true
+          }
+        }
       }
     });
     return user;

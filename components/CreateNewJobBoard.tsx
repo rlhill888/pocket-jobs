@@ -51,7 +51,7 @@ export default function CreateNewJobBoard({
                 data: {
                     name: name,
                     description: description,
-                    defaultJobColumns: extraJobColumnsArray,
+                    extraJobColumns: extraJobColumnsArray,
                     userId: user.id
                 }
             })

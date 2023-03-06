@@ -1,0 +1,30 @@
+.mainPocketAJobDiv{
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    padding: 10px 10px;
+}
+
+.pocketAJobInputGrid{
+    display: grid;
+    overflow-y: scroll;
+    position: relative;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    width: 100%;
+    height: 20vh;
+    padding: 10px 10px;
+    grid-gap: 20px;
+    margin-bottom: 20px;
+}
+.pocketAJobH{
+    border: 1px solid #3df5a7;
+}
+
+.pocketedJobInputDiv{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2%;
+}

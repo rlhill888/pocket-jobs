@@ -30,7 +30,7 @@ export default function MainPage({
     const router = useRouter()
     return (
         <div>
-            <ModalCard color='red' setModalOpen={setModalOpen} modalOpen={modalOpen}>
+            <ModalCard  color='red' setModalOpen={setModalOpen} modalOpen={modalOpen}>
                 {modalChildren}
             </ModalCard>
             <div>

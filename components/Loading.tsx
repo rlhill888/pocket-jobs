@@ -3,11 +3,11 @@ import "@/styles/components.css/Loading.css"
 
 interface LoadingProps
 {
-    
+    loadingTitle?: string;
 }
 
 export default function Loading({
-
+    loadingTitle
 }:LoadingProps){
 
     return (
@@ -19,7 +19,15 @@ export default function Loading({
                 <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 
                 </div>
+                {
+                    loadingTitle ? 
+                    <h3 className='dynamicLoadingTitle'>{loadingTitle}</h3>
+                    :
+                    <></>
+                }
+                
                 <div className="lds-ripple"><div></div><div></div></div>
+                
 
             </div>
             

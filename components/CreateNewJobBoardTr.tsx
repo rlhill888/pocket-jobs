@@ -55,7 +55,7 @@ export default function CreateNewJobBoardTr({
                         copyArray[index].columnType = e.target.value
                         return copyArray
                     })
-                }} color='secondary' variant='standard' sx={{zIndex: "1000000", width: "100%", margin: "0"}}>
+                }} color='primary' variant='standard' sx={{zIndex: "1000000", width: "100%", margin: "0"}}>
                     <MenuItem value={"text"}>Text</MenuItem>
                     <MenuItem value={"number"}>Number</MenuItem>
                     <MenuItem value={"checkbox"}>Check Box</MenuItem>

@@ -1,6 +1,6 @@
 'use client'
 import JobBoardPage from '@/components/LoggedInViewComponents/JobBoardPage';
-import React from 'react';
+import React, { useEffect } from 'react';
 import "@/styles/loggedInUserView/jobBoardPage.css"
 
 interface pageProps

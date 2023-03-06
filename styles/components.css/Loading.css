@@ -1,6 +1,9 @@
 .loadingDiv{
     height: 100vh;
     width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +16,10 @@
         text-shadow: -12px 4px 11px #3df5a7;
         margin: 0;
     
+}
+.dynamicLoadingTitle{
+  color: #3df5a7;
+  font-size: 2rem;
 }
 
 .loadingFlexRow{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GlassCard from '../GlassCard';
 import "@/styles/loggedInUserView/jobBoardPage.css";
 import TextField from '@mui/material/TextField';
@@ -12,6 +12,12 @@ import { Button } from '@mui/material';
 import WorkTwoToneIcon from '@mui/icons-material/WorkTwoTone';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { queryIdFromUrl } from '@/lib/routing';
+import Loading from '../Loading';
+import ModalCard from '../ModalCard';
+import PocketAJob from '../PocketAJob';
+import "@/styles/components.css/PocketAJob.css"
 
 
 interface JobBoardPageProps
@@ -23,11 +29,64 @@ export default function JobBoardPage({
     name
 }:JobBoardPageProps){
     const router = useRouter()
+    const [user, setUser]= useState(null)
+    const [refreshUserDataState, setRefreshUserData]= useState(0)
+    const [triedFetchingUser, setTriedFetchingUser]= useState(false)
+    const [jobBoard, setJobBoard]: [any, Function]= useState(null)
+    const [modalOpen, setModalOpen]= useState(false)
+    const [modalChildren, setModalChildren]= useState(<></>)
+    const [modalWidthAndHeight, setModalWidthAndHeight]: [{width: string | null, height: string | null}, Function]= useState({
+        width: null,
+        height: null
+    })
+    function refreshUserData(){
+        setRefreshUserData(previous=> previous+1)
+    }
+
+    useEffect(()=>{
+       async function fetchUser(){
+        
+        try{
+
+            const response = await axios({
+                url: '/api/me',
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  }
+            })
+            setUser(response.data)
+            setJobBoard(()=>{
+                const index= response.data.jobBoards.findIndex((jobBoard: any)=> jobBoard.id === queryIdFromUrl(window.location.href))
+                return response.data.jobBoards[index]
+            })
+            setTriedFetchingUser(true)
+        
+          }catch(error){
+            setTriedFetchingUser(true)
+          }  
+       }
+       fetchUser()
+            
+    }, [refreshUserDataState])
+    console.log(user)
+
+    if(!jobBoard && !user && triedFetchingUser){
+        router.push('/signin')
+        return <Loading loadingTitle='Redirecting to Sign In...'/>
+    }
+
+    if(!jobBoard || !user){
+        return <Loading loadingTitle='Loading Your Job Board...'/>
+    }
 
     return (
         <div className='otherMainJobBoardDiv'>
+            <ModalCard width={modalWidthAndHeight.width} height={modalWidthAndHeight.height} modalOpen={modalOpen} setModalOpen={setModalOpen}>
+                    {modalChildren}
+            </ModalCard>
             <GlassCard className='jobBoardHeaderDiv'>
-                <h1 className='jobBoardName'>{name}</h1>
+                <h1 className='jobBoardName'>{jobBoard.name}</h1>
                 <div>
 
                 
@@ -39,10 +98,26 @@ export default function JobBoardPage({
                     <KeyboardDoubleArrowLeftIcon />
                     Home Page
                 </Button>
-                <Button sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
+                {
+                jobBoard.pocketedJobs.length >= 1 ?    
+                <Button 
+                onClick={()=>{
+                    setModalWidthAndHeight({
+                        width: "75vw",
+                        height: "75vh"
+                    })
+                    setModalOpen(true)
+                    setModalChildren(<PocketAJob jobBoard={jobBoard}></PocketAJob>)
+                }}
+                sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
                             <WorkTwoToneIcon sx={{marginRight: '10px'}}/>
                             Pocket a Job
                 </Button>
+
+                :
+                <></>
+                
+                }
                 </div>
             </GlassCard>
             <GlassCard className='searchDiv'>
@@ -53,19 +128,48 @@ export default function JobBoardPage({
                 </Select>
             </GlassCard>
             <GlassCard className='jobsListDiv'>
-                <div
-                
-                className='jobDiv'
-                >
-                    <DataUsageIcon sx={{color: 'red'}}/>
-                    <h3 className='jobName'>
-                        Job Name
-                    </h3>
-                    <div>
+                {
+                    jobBoard.pocketedJobs.length === 0 ?
 
+                    <div className='doNotHaveAnyPocketedJobsDiv'>
+                        <h1>
+                            You currently do not have any jobs pocketed for this job board yet
+                        </h1>
+                        <Button
+                        onClick={()=>{
+                            setModalWidthAndHeight({
+                                width: "75vw",
+                                height: "75vh"
+                            })
+                            setModalOpen(true)
+                            setModalChildren(<PocketAJob jobBoard={jobBoard}></PocketAJob>)
+                        }}
+                        sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
+                            <WorkTwoToneIcon sx={{marginRight: '10px'}}/>
+                            Pocket a Job
+                        </Button>
                     </div>
+                    :
+                    jobBoard.pocketedJobs.map((job: any, index: number)=>{
+                        return(
+                            <div
+                            key={`pocketed job card ${index}`}
+                            className='jobDiv'
+                            >
+                                <DataUsageIcon sx={{color: 'red'}}/>
+                                <h3 className='jobName'>
+                                    Job Name
+                                </h3>
+                                <div>
+            
+                                </div>
+            
+                            </div>
 
-                </div>
+                        )
+                    })
+                }
+               
 
             </GlassCard>
         </div>
