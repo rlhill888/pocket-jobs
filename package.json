@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.11",
+    "@mui/x-date-pickers": "^6.0.0",
     "@prisma/client": "4.6.1",
     "@types/axios": "^0.14.0",
     "@types/node": "18.14.2",

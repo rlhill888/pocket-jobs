@@ -61,7 +61,8 @@ model JobBoard{
 model Step{
   id    String    @id @default(uuid())
   name String
-  stepDescription String
+  stepNumber Int
+  stepDescription String?
   currentStep Boolean
   pocketedJobId String
   dueDate String?
