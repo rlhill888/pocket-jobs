@@ -8,6 +8,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
 import "@/styles/components.css/PocketAJob.css"
+import { gradientButton1 } from '@/styles/materialUiStyles';
 
 interface PocketAJobProps
 {
@@ -36,43 +37,50 @@ function declareInitialValuesState(){
         if(column.columnType === 'text'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: ""
+                value: "",
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'number'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: null
+                value: null,
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'checkbox'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: false
+                value: false,
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'date'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: null
+                value: null,
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'link'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: ""
+                value: "",
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'file'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: null
+                value: null,
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'phone number'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: ""
+                value: "",
+                columnType: column.columnType
             })
         }
         if(column.columnType === 'email'){
@@ -84,7 +92,8 @@ function declareInitialValuesState(){
         if(column.columnType === 'color'){
             newValueArray.push({
                 columnName: column.columnName,
-                value: "#FFFFFF"
+                value: "#FFFFFF",
+                columnType: column.columnType
             })
         }
         
@@ -162,7 +171,13 @@ function mapOutInputs(){
                     )
                 }
                 if(column.columnType === 'file'){
-                    return <p key={`placeholder file ${index}`}>placeholder file input</p>
+                    return <p key={`placeholder file ${index}`}>placeholder file input <button onClick={()=>{
+                        setValues((previous: any)=>{
+                            let copyArray = [...previous]
+                            copyArray[index].value = true
+                            return copyArray
+                        })
+                    }}></button></p>
                 }
                 if(column.columnType === 'phone number'){
                     return(
@@ -204,13 +219,53 @@ function mapOutInputs(){
             })
 }
 
+function determineDisabledButton(){
+    for(const column of values){
+        if(!column.value && column.columnType !== 'checkbox'){
+            return true
+        }
+    }
+    for(const aStep of steps){
+        if(aStep.stepDescription===""){
+            return true
+        }
+        if(!aStep.name){
+            return true
+        }
+    }
+    return false
+}
+
 
 
 
 
     return (
         <div>
-            <h2>Pocket a Job</h2>
+            <div className='displayFlexRowHeaderJustifyContentSpaceBetween'>
+                <h2>Job Information</h2>
+                <Button onClick={()=>{
+                    let reqDefaultValuesArray= []
+                    let reqExtraValuesArray=[...values] 
+
+                    for(let defaultValue of defaultColumns){
+                        for(let value of values){
+                            if(defaultValue.columnName === value.columnName && defaultValue.columnType === value.columnType){
+                                reqDefaultValuesArray.push(value)
+                                debugger
+                                reqExtraValuesArray.splice(values.indexOf(value), 1)
+                            }
+                        }
+                    }
+
+                    
+
+                    console.log("default values:", reqDefaultValuesArray)
+                    console.log("Extra values:", reqExtraValuesArray)
+                }} 
+                variant='contained' color='secondary' disabled={determineDisabledButton()}>Pocket the Job</Button>
+            </div>
+            
             <div className='pocketAJobInputGrid'>
                 {mapOutInputs()}
             </div>
