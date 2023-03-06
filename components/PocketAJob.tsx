@@ -17,7 +17,7 @@ interface PocketAJobProps
 
 interface aStep{
     name: string;
-    dueDate?: string;
+    dueDate?: string | null;
     stepDescription?: string | null;
     id: Number;
 }
@@ -226,7 +226,7 @@ function determineDisabledButton(){
         }
     }
     for(const aStep of steps){
-        if(aStep.stepDescription===""){
+        if(aStep.stepDescription==="" || aStep.dueDate === ""){
             return true
         }
         if(!aStep.name){
@@ -246,15 +246,15 @@ function determineDisabledButton(){
                 <h2>Job Information</h2>
                 <Button onClick={()=>{
                     let reqDefaultValuesArray= []
-                    let reqExtraValuesArray=[...values] 
+                    let reqExtraValuesArray= []
 
-                    for(let defaultValue of defaultColumns){
-                        for(let value of values){
-                            if(defaultValue.columnName === value.columnName && defaultValue.columnType === value.columnType){
-                                reqDefaultValuesArray.push(value)
-                                debugger
-                                reqExtraValuesArray.splice(values.indexOf(value), 1)
-                            }
+
+                    for( let value of values){
+                        let index = defaultColumns.findIndex(defaultValue=> value.columnName === defaultValue.columnName && value.columnType === defaultValue.columnType)
+                        if(index === -1){
+                            reqExtraValuesArray.push(value)
+                        }else{
+                            reqDefaultValuesArray.push(values[index])
                         }
                     }
 
@@ -262,6 +262,7 @@ function determineDisabledButton(){
 
                     console.log("default values:", reqDefaultValuesArray)
                     console.log("Extra values:", reqExtraValuesArray)
+                    console.log("Steps:", steps)
                 }} 
                 variant='contained' color='secondary' disabled={determineDisabledButton()}>Pocket the Job</Button>
             </div>
@@ -272,7 +273,7 @@ function determineDisabledButton(){
             <hr className='pocketAJobH'/>
             <div>
             <div className='jobStepsCreatePocketedJob'>
-                <h3>Job Steps</h3>
+                <h3>Job Application Follow Up Steps</h3>
                 <Button
                 onClick={()=>{
                     setSteps((previous: aStep[])=>{
@@ -280,7 +281,7 @@ function determineDisabledButton(){
                         copyArray.push({
                             name: "",
                             stepDescription: null,
-                            dueDate: "",
+                            dueDate: null,
                             id: copyArray.length + 1
                         })
                         return copyArray
@@ -373,13 +374,72 @@ function determineDisabledButton(){
                                             return copyArray
                                         })
                                     }}
-                                    >Add description for step {index +1}</Button>
+                                    >Add description for step {index +1}: {step.name}</Button>
                                 </div>
                             )
                             
                         }
                     })}
                 </div>
+                {steps.length >=1 ? 
+                        <div>
+                             <hr className='pocketAJobH'/>
+                             <h3> Step Due Dates</h3>
+                            <div>
+                            
+                            {
+                                steps.map((individualStep, index)=>{
+                                    if(typeof(individualStep.dueDate) === 'string'){
+                                        return(
+                                            <div className='displayFlexRowHeader' key={`individual step due date ${individualStep.id}`}>
+                                                <IconButton
+                                                onClick={()=>{
+                                                    setSteps((previous: aStep[])=>{
+                                                        let copyArray = [...previous]
+                                                        copyArray[index].dueDate = null
+                                                        return copyArray
+                                                    })
+                                                }}
+                                                sx={{color: "red"}}>
+                                                    <CancelTwoToneIcon />
+                                                </IconButton>
+                                                <p>{`Step ${individualStep.id}. Due Date: `}</p>
+                                                <TextField 
+                                                color={index % 2 ? 'secondary' : 'primary'}
+                                                onChange={(e)=> setSteps((previous: aStep[])=>{
+                                                    let copyArray = [...previous]
+                                                    copyArray[index].dueDate = e.target.value
+                                                    return copyArray
+                                                }) } variant='standard' type='date' sx={{marginLeft: "10px"}} ></TextField>
+                                            </div>
+                                        )
+                                    }else{
+                                        return(
+                                            <div key={`individual step due date ${individualStep.id}`}>
+                                                <Button
+                                                onClick={()=>{
+                                                    setSteps((previous: aStep[])=>{
+                                                        let copyArray = [...previous]
+                                                        copyArray[index].dueDate = ""
+                                                        return copyArray
+                                                    })
+                                                }}
+                                                >{`Add a Due Date To step ${individualStep.id}: ${individualStep.name}`}</Button>
+                                            </div>
+
+                                        )
+                                            
+                                    }
+                                })
+                            }
+                            </div>
+                        </div>
+
+                        :
+                        <></>
+                    
+                }
+                
 
             
             </div>

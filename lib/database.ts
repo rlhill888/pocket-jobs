@@ -30,6 +30,10 @@ export const defaultColumns = [
         columnType: "text"
     },
     {
+        columnName: "Job color",
+        columnType: "color"
+    },
+    {
         columnName: "Rejected",
         columnType: "checkbox"
     },

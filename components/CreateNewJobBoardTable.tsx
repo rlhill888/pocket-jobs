@@ -109,6 +109,18 @@ export default function CreateNewJobBoardTable({
                     </h3>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <h3 className='createBoardTableHeader columnNameHeader'>
+                        Job Color
+                    </h3>
+                </td>
+                <td>
+                    <h3 className='createBoardTableHeader columnTypeHeader'>
+                        Color
+                    </h3>
+                </td>
+            </tr>
             {
 
                 extraTablesArray.map((table, index)=>{
