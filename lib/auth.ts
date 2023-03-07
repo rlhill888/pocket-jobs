@@ -50,7 +50,8 @@ export const getUserFromCookie = async (cookies: any) => {
         },
         pocketedJobs: {
           include: {
-            jobBoard: true
+            jobBoard: true,
+            steps: true
           }
         }
       }

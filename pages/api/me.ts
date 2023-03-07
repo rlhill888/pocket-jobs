@@ -6,7 +6,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
    try{
       
     const user = await getUserFromCookie(req.cookies)
-    console.log(user)
+
     res.json(user)
 
    }catch(error){

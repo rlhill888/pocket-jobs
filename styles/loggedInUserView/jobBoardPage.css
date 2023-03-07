@@ -56,6 +56,20 @@
     align-items: center;
 }
 
+.pocketedJobCCardDataDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.pocketedJobCardDivisionDiv{
+    position: relative;
+    height: 50%;
+    margin-left: 10px
+    
+}
+
 .doNotHaveAnyPocketedJobsDiv{
     position: relative;
     height: 100%;
@@ -64,4 +78,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.pocketedJobCardInformationDiv{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+}
+
+.keepHeaderOnOneLine{
+    white-space: nowrap;
 }

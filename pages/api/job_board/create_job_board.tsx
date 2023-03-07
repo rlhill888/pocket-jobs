@@ -10,7 +10,6 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
     const user = await getUserFromCookie(req.cookies)
     const boardDefaultColumns = JSON.stringify(defaultColumns)
     
-    console.log("body", body)
     if(user){
         const newJobBoard = await db.jobBoard.create({
             data: {

@@ -30,8 +30,6 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
     const defaultValues: Column[] = JSON.parse(body.defaultValues)
     const steps: aStep[]= JSON.parse(body.steps)
     let createdSteps = []
-
-    console.log("body", body)
     let errors= []
     if(user){
        const pocketedJob = await db.pocketedJob.create({

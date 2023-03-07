@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import DataUsageIcon from '@mui/icons-material/DataUsage';
 import { gradientButton1 } from '@/styles/materialUiStyles';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
-import { Button } from '@mui/material';
+import { Button, Checkbox } from '@mui/material';
 import WorkTwoToneIcon from '@mui/icons-material/WorkTwoTone';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import { useRouter } from 'next/navigation';
@@ -18,6 +18,9 @@ import Loading from '../Loading';
 import ModalCard from '../ModalCard';
 import PocketAJob from '../PocketAJob';
 import "@/styles/components.css/PocketAJob.css"
+import { JobColumn } from '@/lib/database';
+import { PocketedJob } from '@prisma/client';
+import TableView from '../TableView';
 
 
 interface JobBoardPageProps
@@ -35,6 +38,7 @@ export default function JobBoardPage({
     const [jobBoard, setJobBoard]: [any, Function]= useState(null)
     const [modalOpen, setModalOpen]= useState(false)
     const [modalChildren, setModalChildren]= useState(<></>)
+    const [dataView, setDataView]: ['Table' | 'Other', Function]= useState('Table')
     const [modalWidthAndHeight, setModalWidthAndHeight]: [{width: string | null, height: string | null}, Function]= useState({
         width: null,
         height: null
@@ -58,6 +62,8 @@ export default function JobBoardPage({
             setUser(response.data)
             setJobBoard(()=>{
                 const index= response.data.jobBoards.findIndex((jobBoard: any)=> jobBoard.id === queryIdFromUrl(window.location.href))
+
+                
                 return response.data.jobBoards[index]
             })
             setTriedFetchingUser(true)
@@ -69,7 +75,7 @@ export default function JobBoardPage({
        fetchUser()
             
     }, [refreshUserDataState])
-    console.log(user)
+    console.log(jobBoard)
 
     if(!jobBoard && !user && triedFetchingUser){
         router.push('/signin')
@@ -129,6 +135,9 @@ export default function JobBoardPage({
             </GlassCard>
             <GlassCard className='jobsListDiv'>
                 {
+                    dataView === 'Table' ?
+                    <TableView jobBoard={jobBoard}/>
+                    :
                     jobBoard.pocketedJobs.length === 0 ?
 
                     <div className='doNotHaveAnyPocketedJobsDiv'>
@@ -150,18 +159,135 @@ export default function JobBoardPage({
                         </Button>
                     </div>
                     :
-                    jobBoard.pocketedJobs.map((job: any, index: number)=>{
+                    jobBoard.pocketedJobs.map((job: PocketedJob, index: number)=>{
+                        const jobColumns: JobColumn[] = (JSON.parse(job.jobColumns))
                         return(
                             <div
                             key={`pocketed job card ${index}`}
                             className='jobDiv'
                             >
-                                <DataUsageIcon sx={{color: 'red'}}/>
-                                <h3 className='jobName'>
-                                    Job Name
+                                <DataUsageIcon sx={{color: `${job.color}`}}/>
+                                <h3 className='jobName keepHeaderOnOneLine'>
+                                    {job.jobPositionName} at {job.companyName}
                                 </h3>
-                                <div>
-            
+                                <div className='pocketedJobCardDivisionDiv' style={{
+                                    border: `1px solid ${job.color}`
+                                }}></div>
+                                <div className='pocketedJobCCardDataDiv'>
+                                <div className='pocketedJobCardInformationDiv'>
+                                    <h4 className='keepHeaderOnOneLine'>Salary: {job.salary}</h4>
+                                </div>
+                                <div className='pocketedJobCardInformationDiv'>
+                                    <h4 className='keepHeaderOnOneLine'>Description: {job.description}</h4>
+                                </div>
+                                <div className='pocketedJobCardInformationDiv'>
+                                    <h4 className='keepHeaderOnOneLine'>Offer Made: {job.offerMade ? "yes" : "no"}</h4>
+                                </div>
+                                <div className='pocketedJobCardInformationDiv'>
+                                    <h4 className='keepHeaderOnOneLine'>Rejected: {job.rejected ? "yes" : "no"}</h4>
+                                </div>
+
+                                    {
+                                        jobColumns.map((column, index)=>{
+                                            console.log(column)
+                                            if(column.columnType === 'text'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'>{column.columnName}: {column.value}</h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'number'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'>{column.columnName}: {column.value}</h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'checkbox'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'>{column.columnName}: 
+                                                            <Checkbox sx={{fill: `${job.color}`, color: `${job.color}`}} value={column.value}></Checkbox>
+                                                            </h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'date'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'>{column.columnName}: {column.value}
+                                                            </h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'link'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'><a href={column.value}>{column.columnName}</a></h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'file'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <p>file placeholder</p>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'phone number'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'>{column.columnName}: {column.value}</h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'email'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine'>{column.columnName}: {column.value}</h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            if(column.columnType === 'color'){
+                                                return(
+                                                    <div key={`${column.columnName} ${index} pocketedJobCardInformationDiv`} className='pocketedJobCardInformationDiv'>
+
+                                                            <h4 className='keepHeaderOnOneLine' style={{color: `${column.value}`}}>{column.columnName}</h4>
+
+                                                    </div>
+
+                                                )
+                                            }
+                                            
+                                            
+                                        })
+                                    }
+                                    
                                 </div>
             
                             </div>
