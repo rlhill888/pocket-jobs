@@ -19,7 +19,7 @@ export default function NoteModalDiv({
 
     return (
         <div>
-            <div className={`note ${mode === 'light' ?  'blackNoteBackgroundColorTransparent' : 'whiteNoteBackgroundColorTransparent'} noteModalDiv`}>
+            <div className={`note ${mode === 'light' ?  'blackNoteBackgroundColorTransparent' : 'blackNoteBackgroundColorTransparent'} noteModalDiv`}>
                 <div
                 className='noteModalExitButton'
                 >
@@ -27,7 +27,7 @@ export default function NoteModalDiv({
                     onClick={()=>{
                         setNoteModalOpen(false)
                     }}
-                    color={mode ==='light' ? 'tertiary' as any : 'fourth' as any}>
+                    color={mode ==='light' ? 'tertiary' as any : 'tertiary' as any}>
                         <ClearIcon />
                     </IconButton>
                 </div>

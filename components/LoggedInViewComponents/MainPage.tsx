@@ -13,6 +13,7 @@ import MainPageToDoCheckBox from '../MainPageToDoCheckBox';
 import TuneIcon from '@mui/icons-material/Tune';
 import CreateNewJobBoard from '../CreateNewJobBoard';
 import { useRouter } from 'next/navigation';
+import ToDoListsDiv from '../ToDoListsDiv';
 
 
 interface MainPageProps
@@ -27,6 +28,7 @@ export default function MainPage({
 }:MainPageProps){
     const [modalOpen, setModalOpen]= useState(false)
     const [modalChildren, setModalChildren]: [ReactNode | null, Function]= useState(null)
+    const [reRender, setReRender]= useState(0)
     const router = useRouter()
     return (
         <div>
@@ -76,23 +78,7 @@ export default function MainPage({
 
                         </div>
                         <div className='toDoSList'>
-
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            v
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
-                            <MainPageToDoCheckBox toDoName='asvbsjavdsaucvbyudsavcbhdjsavcyudsjvcdsuacvdjsavcdusacvdtsyauvcgsadhjvcdsajvcdsjhavcfdghjas'/>
+                            <ToDoListsDiv setReRender={setReRender} setModalChildren={setModalChildren} setModalOpen={setModalOpen}/>
 
                         </div>
                         

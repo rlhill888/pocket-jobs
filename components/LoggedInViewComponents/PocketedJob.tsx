@@ -5,7 +5,7 @@ import GlassCard from '../GlassCard';
 import DataUsageIcon from '@mui/icons-material/DataUsage';
 import TuneIcon from '@mui/icons-material/Tune';
 import { darkenRGBValue, getFirstRGBValue, lightenRGBValue, convertColorToRGB } from '@/lib/theme';
-import { Button, Checkbox, IconButton, setRef, TextField } from '@mui/material';
+import { Button, Checkbox, createTheme, IconButton, setRef, TextField, ThemeOptions, ThemeProvider } from '@mui/material';
 import Loading from '../Loading';
 import axios from 'axios';
 import { queryIdFromUrl } from '@/lib/routing';
@@ -76,7 +76,7 @@ export default function PocketedJobComp({
     let creatingNewSteps = []
 
     for(let step of newSteps){
-        const index = stepsDeletedArray.findIndex((value: Step)=>{
+        const index = stepsDeletedArray.findIndex((value: aStep)=>{
             debugger
             return value.id === step.id
         })
@@ -88,7 +88,7 @@ export default function PocketedJobComp({
 
     for(let step of initialSteps){
         let foundValue
-        const index = newSteps.findIndex((value: Step)=>{
+        const index = newSteps.findIndex((value: aStep)=>{
             foundValue = value
             return value.id === step.id
         })
@@ -264,11 +264,30 @@ function returnDateString(date: string){
    
    let lightenedColor
    let darkenedColor
+   let themeOptions : ThemeOptions= {}
    if(color){
     
      darkenedColor = darkenRGBValue(color)
     lightenedColor = lightenRGBValue(color)
     console.log(color)
+      themeOptions = createTheme({
+        palette: {
+          mode: 'light',
+          primary: {
+            main: color,
+          },
+          secondary: {
+            main: '#3df5a7',
+      
+          },
+          tertiary: {
+            main: '#FFFFFF' 
+          } ,
+          fourth: {
+            main: '#000000'
+          }
+        } as any,
+      });
 
     
    }
@@ -281,9 +300,9 @@ function returnDateString(date: string){
    }
     return (
         <div style={{
-            backgroundImage: `linear-gradient( 109.6deg,  ${darkenedColor} 11.2%, ${lightenedColor} 71.1% )`
+            backgroundImage: `linear-gradient( 109.6deg,  ${darkenRGBValue('rgb(255,255,255)')} 11.2%, ${lightenRGBValue('rgb(255,255,255)')} 71.1% )`
         }} className='mainPocketJobDiv'>
-
+        <ThemeProvider theme={themeOptions}>
         <ModalCard
         width={'70vw'}
         height='70vh'
@@ -306,10 +325,10 @@ function returnDateString(date: string){
         }
         
         
-        <div className={`otherMainPocketedJobsDiv ${getFirstRGBValue(color) <= 127.5 ? "pocketedJobLightColor" : "pocketedJobDarkColor"}`}>
+        <div className={`otherMainPocketedJobsDiv ${getFirstRGBValue(color) <= 127.5 ? "pocketedJobDarkColor" : "pocketedJobDarkColor"}`}>
             <GlassCard className='pocketedJobsTitleDiv'>
                 <div className='titleAndIconDiv'>
-                    <DataUsageIcon sx={{color: mode=== 'light' ? 'black' : 'white', marginRight: "10px"}}/>
+                    <DataUsageIcon color='primary' sx={{ marginRight: "10px"}}/>
                     <h1 className='pocketedJobTitle'>
                         {thePocketedJob.jobPositionName} at {thePocketedJob.companyName}
                     </h1>
@@ -318,6 +337,7 @@ function returnDateString(date: string){
                 </div>
                 <div className='flexRowDivClass'>
                     <Button
+                   
                     onClick={()=>{
                         router.push(`/job_board/${thePocketedJob.jobBoard.id}`)
                     }}
@@ -333,6 +353,7 @@ function returnDateString(date: string){
                             <h1>Save Changes?</h1>
                             <ButtonGroup
                             variant='contained'
+                            
                             >
                                 <Button
                                 onClick={async ()=>{
@@ -351,9 +372,9 @@ function returnDateString(date: string){
                         )
                     }}
                     sx={{
-                        marginLeft: '10px'
+                        marginLeft: '10px',
                     }}
-                    color={mode === 'light' ? 'fourth' as any : 'tertiary' as any}
+                    
                     disabled={ initialPocketedJobValues === newPocketedJobValues ? true: false}
                     
                     > 
@@ -407,7 +428,7 @@ function returnDateString(date: string){
                                             copyObject.salary = e.target.value
                                             return copyObject
                                         })
-                                    }} value={newPocketedJobValues.salary} variant='standard' color={'tertiary' as any}></TextField>
+                                    }} value={newPocketedJobValues.salary} variant='standard' ></TextField>
                                 </td>
                                 <td>
                                     <input type='color' value={newPocketedJobValues.color as string} onChange={(e)=> setNewPocketedJobValues((previous: PocketedJob)=>{
@@ -427,14 +448,14 @@ function returnDateString(date: string){
                                                             copyObj.jobColumns[index].value = e.target.value
                                                             return copyObj
                                                         })
-                                                    }} value={newPocketedJobValues.jobColumns[index].value} color={'tertiary' as any} />
+                                                    }} value={newPocketedJobValues.jobColumns[index].value}  />
                                                 </td>
                                             )
                                         }
                                         if(column.columnType=== 'checkbox'){
                                             return(
                                                 <td key={`extra column td input ${index} ${column.columnName}`}>
-                                                    <Checkbox color={'tertiary' as any} onChange={(e)=>{
+                                                    <Checkbox  onChange={(e)=>{
                                                         setNewPocketedJobValues((previous: PocketedJob)=>{
                                                             let copyObj = {...previous}
                                                             copyObj.jobColumns[index].value = e.target.checked
@@ -461,7 +482,6 @@ function returnDateString(date: string){
                                             return(
                                                 <td key={`extra column td input ${index} ${column.columnName}`}>
                                                     <TextField 
-                                                    color={'tertiary' as any}
                                                     variant='standard'
                                                     type='date'
                                                     onChange={(e)=>{
@@ -499,7 +519,7 @@ function returnDateString(date: string){
                                             return(
                                                 <td key={`extra column td input ${index} ${column.columnName}`}>
                                                     <TextField 
-                                                    color={'tertiary' as any}
+                                                    
                                                     variant='standard'
                                                     type='tel'
                                                     onChange={(e)=>{
@@ -516,7 +536,7 @@ function returnDateString(date: string){
                                             return(
                                                 <td key={`extra column td input ${index} ${column.columnName}`}>
                                                     <TextField 
-                                                    color={'tertiary' as any}
+                                                    
                                                     variant='standard'
                                                     type=''
                                                     onChange={(e)=>{
@@ -583,7 +603,8 @@ function returnDateString(date: string){
                         <div className='headerAndIconDiv'>
                             <h3>Notes</h3>
                             <Button
-                            color={mode === 'light' ? 'fourth' as any : 'tertiary' as any}
+                            
+                            
                             onClick={()=>{
                                 
                                 setNoteModalContents(
@@ -606,7 +627,7 @@ function returnDateString(date: string){
                                     return(
                                         <div 
                                             key={`note job page ${index}`}
-                                            className={`note ${mode === 'light' ? 'blackNoteBackgroundColor' : 'whiteNoteBackgroundColor'}`}>
+                                            className={`note ${mode === 'light' ? 'blackNoteBackgroundColor' : 'blackNoteBackgroundColor'}`}>
                                                 <div className='xButtonMappedOutNoteDiv'>
                                                     <IconButton
                                                     className='exitButtonFunctionIdentification'
@@ -673,8 +694,8 @@ function returnDateString(date: string){
                                 setModalOpen(true)
                                 setModalChildren(<EditStepsDiv setActiveStep={setActiveStep} newPocketedJobValues={newPocketedJobValues} setNewPocketedJobValues={setNewPocketedJobValues} steps={newPocketedJobValues.steps} />)
                             }}
-                            sx={{color: mode=== 'light' ? 'black' : 'white'}}>
-                            <TuneIcon sx={{color: mode=== 'light' ? 'black' : 'white'}}/>  
+                            >
+                            <TuneIcon />  
                             </IconButton>
                         </div>
                         
@@ -683,6 +704,7 @@ function returnDateString(date: string){
                         <div className='noStepsDynamicDiv'>
                             <h3>You Currently Do Not Have Any Next Steps For This Pocketed Job</h3>
                             <Button 
+                            
                             variant='contained'
                             onClick={()=>{
                                 setModalOpen(true)
@@ -690,7 +712,8 @@ function returnDateString(date: string){
                             }}
                             >Create A Step</Button>
                         </div> : <></>}
-                        <Stepper activeStep={activeStep} orientation='vertical'>
+                        <Stepper 
+                        activeStep={activeStep} orientation='vertical'>
                             {
                                 newPocketedJobValues.steps.map((step: aStep, index)=>{
                                     return(
@@ -722,7 +745,9 @@ function returnDateString(date: string){
                         <div className='stepStateControlButtonsDiv'>
                         {
                             newPocketedJobValues.steps.length > 0 ?
-                            <ButtonGroup size='small' variant='contained'>
+                            <ButtonGroup size='small' variant='contained'
+                            
+                            >
 
                                                 
                                                 {
@@ -732,6 +757,7 @@ function returnDateString(date: string){
                                                 }
                 
                                                 <Button
+                                                
                                                 onClick={()=>{
                                                     setCompletedStepValue(newPocketedJobValues.steps[activeStep].completed? false : true, activeStep)
                                                 }}
@@ -741,7 +767,9 @@ function returnDateString(date: string){
 
                                                 {
                                                     activeStep < newPocketedJobValues.steps.length -1 ?
-                                                    <Button onClick={()=>{
+                                                    <Button 
+                                                    
+                                                    onClick={()=>{
                                                         setActiveStep(previous=> previous + 1)
                                                     }} >
                                                         <NavigateNextIcon />
@@ -760,6 +788,7 @@ function returnDateString(date: string){
 
             </div>
         </div>
+        </ThemeProvider>
         </div>
     )
 

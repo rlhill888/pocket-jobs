@@ -20,6 +20,7 @@ export const themeOptions: ThemeOptions = createTheme({
   } as any,
 });
 
+
 export const  darkenRGBValue = (rgbString: string)=> {
   // Check if the RGB string is valid
   if (!/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.test(rgbString)) {

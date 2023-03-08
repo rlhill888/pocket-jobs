@@ -27,14 +27,13 @@ export default function CreateNewNote({
                                     key={`create note title`}
                                     inputProps={{
                                         style: {
-                                            color: mode === 'light' ? 'white' as any : 'black' as any
+                                            color: 'white'
                                         }
                                     }}
                                     value={newNoteTitle}
                                     onChange={(e)=> setNewNoteTitle(e.target.value)}
-                                    color={mode === 'light' ? 'tertiary' as any : 'fourth' as any} label='New Note Title' fullWidth variant='standard' />
+                                     label='New Note Title' fullWidth variant='standard' />
                                     <TextField
-                                    
                                     key={`create note desc`}
                                     value={newNNoteDescription}
                                     onChange={(e)=> setNewNoteDescription(e.target.value)}
@@ -43,10 +42,10 @@ export default function CreateNewNote({
                                         style: {
                                             position: 'relative',
                                             height: '25vh',
-                                            color: mode === 'light' ? 'white' as any : 'black' as any,
+                                            color: 'white',
                                             textOverflow: "ellipsis", overflow: "hidden"
                                         }
-                                    }} color={mode === 'light' ? 'tertiary' as any : 'fourth' as any} label='New Note Description' fullWidth />
+                                    }}  label='New Note Description' fullWidth />
                                     <Button
                                     onClick={(e)=>{
                                         if(e.detail == 2){
@@ -78,7 +77,7 @@ export default function CreateNewNote({
 
                                     }}
                                     disabled={ newNNoteDescription.trim() === "" || newNoteTitle.trim() === "" ? true : false}
-                                    color={mode === 'light' ? 'tertiary' as any : 'fourth' as any}
+                                    
                                     >Create New Note</Button>
         </div>
     )

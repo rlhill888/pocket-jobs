@@ -50,9 +50,9 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
         const initialSteps = updatedPocketedJob.steps
         const newSteps = body.steps 
 
-        let stepsUpdatedArray = []
-        let stepsDeletedArray = [...initialSteps]
-        let creatingNewSteps = []
+        let stepsUpdatedArray: Step[] = []
+        let stepsDeletedArray: Step[] = [...initialSteps]
+        let creatingNewSteps: Step[] = []
 
         for(let step of newSteps){
             const index = stepsDeletedArray.findIndex((value: Step)=>{
