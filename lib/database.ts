@@ -68,6 +68,9 @@ export interface aStep{
     name: string;
     dueDate?: string | null;
     stepDescription?: string | null;
+    currentStep: boolean;
+    completed: boolean;
+    stepNumber: number;
     id: Number;
 }
 

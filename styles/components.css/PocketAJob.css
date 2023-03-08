@@ -6,6 +6,11 @@
     padding: 10px 10px;
 }
 
+.flexRowDivClass{
+    display: flex;
+    flex-direction: row;
+}
+
 .pocketAJobInputGrid{
     display: grid;
     overflow-y: scroll;
@@ -87,6 +92,14 @@
 .displayFlexRowHeader{
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+.noStepsDynamicDiv{
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 

@@ -15,7 +15,10 @@ export default function page({
 
 
     return (
+        <div>
             <PocketedJob></PocketedJob>
+        </div>
+            
             
         
     )

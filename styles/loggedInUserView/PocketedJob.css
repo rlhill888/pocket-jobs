@@ -130,6 +130,17 @@
     top: 5px;
 }
 
+.stepStateControlButtonsDiv{
+    position: absolute;
+    bottom: 10px;
+    margin: auto;
+}
+
+.stepperMenu{
+    height: 50vh;
+    overflow-y: auto;
+}
+
 .pocketedJbTodoDiv{
     width: 20vw;
 }

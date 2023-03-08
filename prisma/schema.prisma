@@ -66,6 +66,7 @@ model Step{
   stepDescription String?
   currentStep Boolean
   pocketedJobId String
+  completed Boolean @default(false)
   dueDate String?
   pocketedJob PocketedJob @relation(fields: [pocketedJobId], references: [id])
 }
