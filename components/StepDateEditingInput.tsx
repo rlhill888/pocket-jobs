@@ -32,7 +32,7 @@ export function StepDateEditingInput({
                 onClick={()=>{
                     setNewPocketedJobValues((previous: PocketedJob)=>{
                         let copyObj = {...previous}
-                        copyObj.steps[index].dueDate = undefined
+                        copyObj.steps[index].dueDate = null
                         setRerender(previous=> previous + 1)
                         return copyObj
                     })

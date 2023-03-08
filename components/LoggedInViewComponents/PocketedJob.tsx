@@ -67,6 +67,48 @@ export default function PocketedJobComp({
    async function refreshUserData(){
        setRefreshUserData(previous=> previous+1)
    }
+
+   function tempSave(){
+    const initialSteps = [...initialPocketedJobValues.steps]
+    const newSteps = [...newPocketedJobValues.steps]
+    let stepsUpdatedArray = []
+    let stepsDeletedArray = [...initialSteps]
+    let creatingNewSteps = []
+
+    for(let step of newSteps){
+        const index = stepsDeletedArray.findIndex((value: Step)=>{
+            debugger
+            return value.id === step.id
+        })
+        if(index !== -1){
+            debugger
+            stepsDeletedArray.splice(index, 1)
+        }
+    }
+
+    for(let step of initialSteps){
+        let foundValue
+        const index = newSteps.findIndex((value: Step)=>{
+            foundValue = value
+            return value.id === step.id
+        })
+        if(index && foundValue && step !== foundValue){
+            stepsUpdatedArray.push(step)
+        }
+    }
+    for(let step of newSteps){
+        let newStep = true
+        for(let oldStep of initialSteps){
+            if(step.id === oldStep.id){
+                newStep = false
+            }
+        }
+        if(newStep){
+            creatingNewSteps.push(step)
+        }
+    }
+    debugger
+   }
    async function saveChanges(){
 
         setLoadingText('Saving Changes To Pocketed Job')
@@ -79,7 +121,7 @@ export default function PocketedJobComp({
                 data: {
                     pocketedJob: newPocketedJobValues,
                     steps: newPocketedJobValues.steps
-                } as updatePocketedJobBody
+                } as updatePocketedJobBody,
 
             })
             console.log(response.data)
@@ -295,6 +337,7 @@ function returnDateString(date: string){
                                 <Button
                                 onClick={async ()=>{
                                     saveChanges()
+                                    // tempSave()
                                 }}
                                 >Yes</Button>
                                 <Button

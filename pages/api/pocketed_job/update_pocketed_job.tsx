@@ -1,13 +1,13 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { getUserFromCookie } from "@/lib/auth";
-import { PocketedJob } from "@prisma/client";
+import { PocketedJob, prisma, Step } from "@prisma/client";
 import { aStep } from "@/lib/database";
 import { db } from "@/lib/db";
 
 interface updatePocketedJobBody{
     pocketedJob: PocketedJob;
-    steps: string | aStep[];
+    steps: Step[];
 }
 
 export default async function me(req: NextApiRequest, res: NextApiResponse){
@@ -17,7 +17,11 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
 
     const newPocketedJob = body.pocketedJob
 
-   
+   let stepsData: any = {
+    created: [],
+    updated: [],
+    destroyed: [],
+   }
       
     const user = await getUserFromCookie(req.cookies)
 
@@ -38,10 +42,115 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
                 rejected: newPocketedJob.rejected,
                 offerMade: newPocketedJob.offerMade,
                 notes: JSON.stringify(newPocketedJob.notes)
+            },
+            include: {
+                steps: true
             }
         })
+        const initialSteps = updatedPocketedJob.steps
+        const newSteps = body.steps 
 
-        return res.json(updatedPocketedJob)
+        let stepsUpdatedArray = []
+        let stepsDeletedArray = [...initialSteps]
+        let creatingNewSteps = []
+
+        for(let step of newSteps){
+            const index = stepsDeletedArray.findIndex((value: Step)=>{
+                return value.id === step.id
+            })
+            if(index !== -1){
+                stepsDeletedArray.splice(index, 1)
+            }
+        }
+
+        for(let step of initialSteps){
+            let foundValue
+            const index = newSteps.findIndex((value: Step)=>{
+                foundValue = value
+                return value.id === step.id
+            })
+            if(index !== -1 && foundValue && step !== foundValue){
+                stepsUpdatedArray.push(foundValue)
+            }
+        }
+        for(let step of newSteps){
+            let newStep = true
+            for(let oldStep of initialSteps){
+                if(step.id === oldStep.id){
+                    newStep = false
+                }
+            }
+            if(newStep){
+                creatingNewSteps.push(step)
+            }
+        }
+
+        for(let step of stepsUpdatedArray){
+            try{
+                const updatedStep = await db.step.update({
+                    where: {
+                        id: step.id
+                    },
+                    data: {
+                        name: step.name,
+                        stepNumber: step.stepNumber,
+                        stepDescription: step.stepDescription,
+                        currentStep: step.currentStep,
+                        completed: step.completed,
+                        dueDate: step.dueDate
+                    }
+                })
+                stepsData.updated.push(updatedStep)
+
+            }catch(error){
+                console.log(error)
+                res.status(403)
+                return res.json({error: error})
+            }
+        }
+
+        for(let step of stepsDeletedArray){
+            try{
+                const deletedStep = await db.step.delete({
+                    where: {
+                        id: step.id
+                    }
+                })
+                stepsData.destroyed.push(deletedStep)
+
+            }catch(error){
+                console.log(error)
+                res.status(403)
+                return res.json({error: error})
+            }
+
+        }
+
+        for(let step of creatingNewSteps){
+            try{
+                const createdStep = await db.step.create({
+                    data: {
+                        name: step.name,
+                        stepNumber: step.stepNumber,
+                        stepDescription: step.stepDescription,
+                        currentStep: step.currentStep,
+                        pocketedJobId: newPocketedJob.id,
+                        completed: step.completed,
+                        dueDate: step.dueDate
+                    }
+                })
+                stepsData.created.push(createdStep)
+
+            }catch(error){
+                console.log(error)
+                res.status(403)
+                return res.json({error: error})
+            }
+
+        }
+
+
+        return res.json([updatedPocketedJob, stepsData])
 
     }else{
         res.status(401)

@@ -29,7 +29,7 @@ export default function StepDescriptionEditingInput({
                 onClick={()=>{
                     setNewPocketedJobValues((previous: PocketedJob)=>{
                         let copyObj= {...previous}
-                        copyObj.steps[index].stepDescription = undefined
+                        copyObj.steps[index].stepDescription = null
                         setRerender(previous=> previous + 1)
                         return copyObj
                     })

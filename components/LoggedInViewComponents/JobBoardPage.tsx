@@ -62,8 +62,6 @@ export default function JobBoardPage({
             setUser(response.data)
             setJobBoard(()=>{
                 const index= response.data.jobBoards.findIndex((jobBoard: any)=> jobBoard.id === queryIdFromUrl(window.location.href))
-
-                debugger
                 return response.data.jobBoards[index]
             })
             setTriedFetchingUser(true)
