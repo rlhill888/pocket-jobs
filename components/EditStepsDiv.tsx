@@ -80,6 +80,13 @@ export default function EditStepsDiv({
                                         return value === step})
                                     if(index > -1){
                                         copyObj.steps.splice( index , 1)
+                                        let copyCopyObj = {...copyObj}
+                                        let newStepNumber = 1
+                                        for(let step of copyCopyObj.steps){
+                                            copyObj.steps[index].stepNumber = newStepNumber
+                                            newStepNumber = newStepNumber + 1
+                                        }
+
                                         setRerender(previous=> previous + 1)
                                         return copyObj
                                     }else{
@@ -92,7 +99,7 @@ export default function EditStepsDiv({
                             >
                                 <RemoveCircleTwoToneIcon sx={{color: 'red'}}/>
                             </IconButton>
-                            Step {step.stepNumber}</h2>
+                            Step {index + 1}</h2>
                         <TextField value={step.name} onChange={(e)=> setNewPocketedJobValues((previous: PocketedJob)=>{
                             let copyObj ={...previous}
                             copyObj.steps[index].name = e.target.value
