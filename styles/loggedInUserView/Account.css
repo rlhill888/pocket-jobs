@@ -21,6 +21,16 @@
     flex-direction: row;
     align-items: center;
 }
+.accountInfoDivAccountView{
+    position: relative;;
+    text-align: left;
+    height: 70%;
+}
+.divHeight{
+    position: relative;
+    height: 55vh;
+    overflow-y: auto;
+}
 
 .userNameHeader{
     margin: 0;

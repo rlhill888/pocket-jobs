@@ -13,12 +13,89 @@ import { useRouter } from "next/navigation";
 interface TableViewProps
 {
     jobBoard: JobBoard
+    columnNameFilter: string | null;
+    searchValue: any;
+
 }
 
 export default function TableView({
-    jobBoard
+    jobBoard,
+    columnNameFilter,
+    searchValue
 }:TableViewProps){
     const router= useRouter()
+
+    function returnFilteredArrayOfPocketedJobs(){
+        if(columnNameFilter === 'salary'){
+            return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                return pocketedJob.salary.toLowerCase().includes(searchValue.toLowerCase().trim())
+            })
+        }
+        if(columnNameFilter === 'jobPositionName'){
+            return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                return pocketedJob.jobPositionName.toLowerCase().includes(searchValue.toLowerCase().trim())
+            })
+        }
+        if(columnNameFilter === 'companyName'){
+            return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                return pocketedJob.companyName.toLowerCase().includes(searchValue.toLowerCase().trim())
+            })
+        }
+        if(columnNameFilter === 'description'){
+            return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                return (pocketedJob.description as string).toLowerCase().includes(searchValue.toLowerCase().trim())
+            })
+        }
+        if(columnNameFilter === 'rejected'){
+            return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                return pocketedJob.rejected === searchValue
+            })
+        }
+        if(columnNameFilter === 'offerMade'){
+            return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                return pocketedJob.offerMade === searchValue
+            })
+        }
+        const extraColumns = JSON.parse(jobBoard.extraJobColumns)
+        const index = extraColumns.findIndex((column: JobColumn)=>{ return column.columnName === columnNameFilter})
+        
+       
+        if(index >=0 && extraColumns[index].columnName === columnNameFilter){
+                if(extraColumns[index].columnType === 'checkbox'){
+                    return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                        return JSON.parse(pocketedJob.jobColumns as any)[index].value === searchValue
+                    })
+
+                }
+                if(extraColumns[index].columnType === 'date'){
+                    return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                        return JSON.parse(pocketedJob.jobColumns as any)[index].value === searchValue
+                    })
+
+                }
+                if(extraColumns[index].columnType === 'color'){
+                    return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                        return JSON.parse(pocketedJob.jobColumns as any)[index].value === searchValue
+                    })
+
+                }
+                if(extraColumns[index].columnType === 'file'){
+                    return jobBoard.pocketedJobs
+
+                }
+
+                return jobBoard.pocketedJobs.filter((pocketedJob)=>{
+                    return JSON.parse(pocketedJob.jobColumns as any)[index].value.includes(searchValue) 
+                })
+        }
+
+        
+        
+
+    return jobBoard.pocketedJobs
+        
+
+    }
     return (
         <div className="TableView">
 
@@ -29,6 +106,9 @@ export default function TableView({
                     </th>
                     <th>
                         COMPANY NAME
+                    </th>
+                    <th>
+                        Salary
                     </th>
                     <th>
                         DESCRIPTION
@@ -52,7 +132,19 @@ export default function TableView({
 
                 </tr>
                 {
-                    jobBoard.pocketedJobs.map((job: any, index1: Number)=>{
+                    returnFilteredArrayOfPocketedJobs().length === 0 ? 
+                    <div
+                    style={{
+                        position: 'absolute',
+                        width: '100%',
+                        margin: 'auto',
+                        top: "40%"
+                    }}
+                    >
+                        <h2>No Jobs that You have Pocketed Match Your Search </h2>
+                    </div>
+                    :
+                    (returnFilteredArrayOfPocketedJobs()).map((job: any, index1: Number)=>{
                         return(
                             <tr className="jobTableRow" key={`table data table row ${job.id}`}>
                                 <td>
@@ -79,6 +171,9 @@ export default function TableView({
                                 </td>
                                 <td>
                                     {job.companyName}
+                                </td>
+                                <td>
+                                    {job.salary}
                                 </td>
                                 <td>
                                     {job.description}

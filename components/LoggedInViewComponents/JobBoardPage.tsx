@@ -18,7 +18,7 @@ import Loading from '../Loading';
 import ModalCard from '../ModalCard';
 import PocketAJob from '../PocketAJob';
 import "@/styles/components.css/PocketAJob.css"
-import { JobColumn } from '@/lib/database';
+import { JobBoard, JobColumn } from '@/lib/database';
 import { PocketedJob } from '@prisma/client';
 import TableView from '../TableView';
 
@@ -43,10 +43,15 @@ export default function JobBoardPage({
         width: null,
         height: null
     })
+    const [valuesArray, setValuesArray]: [string[], Function]= useState([])
+    const [filter, setFilter]= useState(null)
+    const [searchValue, setSearchValue]: [any, Function]= useState(null)
+    const [searchInputType, setSearchInputType]: ["text" | "number" | "checkbox" | "date" | "link" | "file" | "phone number" | "email" | "color" | 'all' | null, Function ]= useState('all')
+    const [filteredJobs, setFilteredJobs]= useState([])
     function refreshUserData(){
         setRefreshUserData(previous=> previous+1)
     }
-
+    console.log('values Array', valuesArray)
     useEffect(()=>{
        async function fetchUser(){
         
@@ -60,10 +65,19 @@ export default function JobBoardPage({
                   }
             })
             setUser(response.data)
+            let values = ['all', 'salary', 'jobPositionName', 'companyName', 'description', 'rejected', 'offerMade']
+            
+            const index= response.data.jobBoards.findIndex((jobBoard: any)=> jobBoard.id === queryIdFromUrl(window.location.href))
+            
             setJobBoard(()=>{
                 const index= response.data.jobBoards.findIndex((jobBoard: any)=> jobBoard.id === queryIdFromUrl(window.location.href))
                 return response.data.jobBoards[index]
             })
+
+            for(let column of JSON.parse(response.data.jobBoards[index].extraJobColumns)){
+                values.push(column.columnName)
+            }
+            setValuesArray(values)
             setTriedFetchingUser(true)
         
           }catch(error){
@@ -73,15 +87,111 @@ export default function JobBoardPage({
        fetchUser()
             
     }, [refreshUserDataState])
-    console.log(user)
+    console.log(jobBoard)
+    // console.log('extra columns', JSON.parse(jobBoard.extraJobColumns))
 
     if(!jobBoard && !user && triedFetchingUser){
         router.push('/signin')
         return <Loading loadingTitle='Redirecting to Sign In...'/>
     }
 
-    if(!jobBoard || !user){
+    if(!jobBoard || !user || !valuesArray){
         return <Loading loadingTitle='Loading Your Job Board...'/>
+    }
+
+    function detectAndCapitalize(str: string) {
+        let result = '';
+        for (let i = 0; i < str.length; i++) {
+          if (i > 0 && str[i-1] !== ' ' && str[i-1] !== str[i-1].toUpperCase() && str[i] === str[i].toUpperCase()) {
+            result += ' ';
+          }
+          result += str[i].toUpperCase();
+        }
+        return result;
+      }
+
+    // function setFilteredPocketedJobs( filter: string, value: any){
+    //     const pocketedJobs = jobBoard.pocketedJobs
+    //     if(filter === 'salary'){
+    //         setFilteredJobs(pocketedJobs.filter((pocketedJob: PocketedJob)=>{
+    //             return pocketedJob.salary.includes(value.trim as string)
+    //         }))
+    //     }else{
+    //         return 
+    //     }
+    // }
+
+    function determineInputType(){
+        if(searchInputType === 'text'){
+            return(
+                <TextField value={searchValue} onChange={(e)=> {
+                    
+                    setSearchValue(e.target.value)
+                    
+                    }} variant='standard'/>
+            )
+        }
+        if(searchInputType === 'number'){
+            return(
+                <TextField type='number' value={searchValue} onChange={(e)=> {
+                    
+                    setSearchValue(e.target.value)
+                    
+                    }} variant='standard'/>
+            )
+        }
+        if(searchInputType === 'phone number'){
+            return(
+                <TextField type='tel' value={searchValue} onChange={(e)=> {
+                    
+                    setSearchValue(e.target.value)
+                    
+                    }} variant='standard'/>
+            )
+        }
+        if(searchInputType === 'color'){
+            return(
+                <input type='color' value={searchValue} onChange={(e)=> {
+                    
+                    setSearchValue(e.target.value)
+                    
+                    }}/>
+            )
+        }
+        if(searchInputType === 'date'){
+            return(
+                <TextField type='date' value={searchValue} onChange={(e)=> {
+                    
+                    setSearchValue(e.target.value)
+                    
+                    }} variant='standard'/>
+            )
+        }
+        if(searchInputType === 'checkbox'){
+            return(
+                <Checkbox checked={searchValue as any} onChange={(e)=> {
+                    
+                    setSearchValue(e.target.checked)
+                    
+                    }} />
+            )
+        }
+        if(searchInputType === 'file'){
+            return(
+                <></>
+            )
+        }
+        if(searchInputType === 'all'){
+            return(
+               <></>
+            )
+        }
+        
+        else{
+            return(
+                <></>
+            )
+        }
     }
 
     return (
@@ -124,13 +234,80 @@ export default function JobBoardPage({
                 }
                 </div>
             </GlassCard>
+
+
+
             <GlassCard className='searchDiv'>
                 <SearchIcon color='primary'/>
-                <TextField variant='standard'/>
-                <Select variant='standard'>
-                    <MenuItem value={"hi"}>Value</MenuItem>
+                {determineInputType()}
+                <Select value={filter} onChange={(e)=>{ 
+                    const extraColumns = JSON.parse(jobBoard.extraJobColumns)
+                    if(e.target.value === 'salary' 
+                    || e.target.value === 'jobPositionName'
+                    || e.target.value === 'companyName'
+                    || e.target.value === 'description'
+                    ){
+                        setSearchValue('')
+                        setSearchInputType('text')
+                    }
+                    if(e.target.value === 'rejected'
+                    || e.target.value === 'offerMade'
+                    ){
+                        setSearchValue(false)
+                        setSearchInputType('checkbox')
+                    }
+                    if(e.target.value === 'all'
+                    || e.target.value === 'file'
+                    ){
+                        setSearchValue(null)
+                        setSearchInputType('all')
+                    }
+                    
+                    const index = extraColumns.findIndex((column: JobColumn)=>{ return column.columnName == e.target.value})
+                    if(index >= 0){
+                        if(extraColumns[index].columnType === 'text'
+                        || extraColumns[index].columnType === 'email'
+                        || extraColumns[index].columnType === 'link'
+                        ){
+                            setSearchValue('')
+                            setSearchInputType('text')
+                        }
+                        if(extraColumns[index].columnType === 'number'){
+                            setSearchValue('')
+                            setSearchInputType('number')
+                        }
+                        if(extraColumns[index].columnType === 'checkbox'){
+                            setSearchValue(false)
+                            setSearchInputType('checkbox')
+                        }
+                        if(extraColumns[index].columnType === 'phone number'){
+                            setSearchValue('')
+                            setSearchInputType('phone number')
+                        }
+                        if(extraColumns[index].columnType === 'date'){
+                            setSearchValue('')
+                            setSearchInputType('date')
+                        }
+                        if(extraColumns[index].columnType === 'color'){
+                            setSearchValue('#FFFFFF')
+                            setSearchInputType('color')
+                        }
+                    }
+                    setFilter(e.target.value as any)
+                    }} variant='standard'>
+                    {
+                        valuesArray.map((value: string, index: number)=>{
+                            return( 
+                            <MenuItem value={value} key={`${value} ${index} search value select`}>
+                                {detectAndCapitalize(value)}
+                            </MenuItem>)
+                        })
+                    }
                 </Select>
             </GlassCard>
+
+
+
             <GlassCard className='jobsListDiv'>
                 {
                     jobBoard.pocketedJobs.length === 0 ?
@@ -154,7 +331,7 @@ export default function JobBoardPage({
                         </Button>
                     </div>
                     :
-                    <TableView jobBoard={jobBoard}/>
+                    <TableView columnNameFilter={filter} searchValue={searchValue} jobBoard={jobBoard}/>
                 }
                
 
