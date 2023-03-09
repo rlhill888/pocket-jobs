@@ -160,7 +160,11 @@ export default function MainPageToDoCheckBox({
                                     >
                                         {
                                             activeStep === index ? 
-                                            <></>
+                                            <h3 style={{
+                                                color: 'rgba(9,111,224,1)'
+                                            }}>
+                                             {theStep.name}
+                                            </h3>
                                             :
                                             <>
                                             {theStep.name}
@@ -221,7 +225,11 @@ export default function MainPageToDoCheckBox({
                     onClick={()=>{
                         router.push(`/pocketed_job/${step.pocketedJob.id}`)
                     }}
-                    className='toDoHeader'>{(step.pocketedJob as PocketedJob).jobPositionName} at {(step.pocketedJob as PocketedJob).companyName}</h2>
+                    className='toDoHeader'> Step For 
+                    
+                    {(step.pocketedJob as PocketedJob).jobPositionName} at {(step.pocketedJob as PocketedJob).companyName}
+                    
+                    </h2>
 
                 </div>
                 )

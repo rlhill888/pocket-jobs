@@ -13,7 +13,7 @@ export default function SignIn({
 }:SignInProps){
 
     return (
-        <div className="test">
+        <div className="signInDiv">
 
            <AuthForm mode={'sign in'} switchBetweenLoginAndSignUp/>
 

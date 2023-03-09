@@ -5,6 +5,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { register } from "@/lib/api";
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import "@/styles/components.css/SignUpComp.css"
 
 interface SignUpProps
 {
@@ -44,7 +45,7 @@ export default function SignUpComp({
                 router.push('/')
             
               }catch(error){
-                
+                console.log(error)
               }  
            }
            fetchUser()
@@ -55,8 +56,8 @@ export default function SignUpComp({
     }
 
     return (
-        <div>
-            <h1>Sign Up</h1>
+        <div className='signUpCompDiv'>
+            <h1 className='signUpHeader'>Sign Up</h1>
 
             <form
             onSubmit={ async (e)=>{
@@ -81,21 +82,33 @@ export default function SignUpComp({
             }}
             >
 
-                <h3>First Name</h3>
-                <TextField value={firstName} onChange={(e)=>  setFirstName(e.target.value)} variant='outlined'></TextField>
-
-                <h3>Last Name</h3>
-                <TextField value={lastName} onChange={(e)=> setLastName(e.target.value)} variant='outlined'></TextField>
+                <div className='firstNameAndLastNameDiv'>
+                    <TextField fullWidth label='First Name' value={firstName} onChange={(e)=>  setFirstName(e.target.value)} variant='outlined'></TextField>
+                    <TextField fullWidth label='Last Name' value={lastName} onChange={(e)=> setLastName(e.target.value)} variant='outlined'></TextField>
+                </div>
+                
 
                 <h3>User Name</h3>
-                <TextField value={userName} onChange={(e)=> setUserName(e.target.value)} variant='outlined'></TextField>
+                <TextField sx={{
+                    marginBottom: '10%'
+                }} value={userName} onChange={(e)=> setUserName(e.target.value)} variant='outlined'></TextField>
 
                 <h3>Password</h3>
-                <TextField type={!showPassword? 'password': ''} value={password} onChange={(e)=> setPassword(e.target.value)} variant='outlined'></TextField> <p>Show Password <Checkbox onChange={(e)=> setShowPassword(e.target.checked)} checked={showPassword}></Checkbox> </p>
+                <TextField 
+                sx={{
+                    marginBottom: '10%'
+                }} 
+                type={!showPassword? 'password': ''} value={password} onChange={(e)=> setPassword(e.target.value)} variant='outlined'></TextField> <p>Show Password <Checkbox onChange={(e)=> setShowPassword(e.target.checked)} checked={showPassword}></Checkbox> </p>
                 <br />
-                <Button type='submit'>Sign Up</Button>
+                <Button 
+                sx={{
+                    marginBottom: '10%'
+                }}
+                variant='contained' disabled={ firstName.trim() === '' || lastName.trim() === '' || userName.trim() === '' || password.trim() === '' ? true: false } fullWidth type='submit'>Sign Up</Button>
                 {SwitchBetweenLogin && setCurrentMode ? 
-                <div>
+                <div
+                className='haveAnAccountDiv'
+                >
                     <h2>Have an account?</h2>
                     <Button onClick={()=> setCurrentMode('sign in')}>Log in</Button>
                 </div>

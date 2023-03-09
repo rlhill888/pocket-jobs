@@ -1,0 +1,17 @@
+.firstNameAndLastNameDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15%;
+}
+
+.signUpHeader{
+    margin-top: 20px;
+    margin-bottom: 15%;
+}
+
+.signUpCompDiv{
+    padding-bottom: 20px;
+}
+
+.haveAnAccountDiv{}

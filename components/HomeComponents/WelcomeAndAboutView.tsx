@@ -25,7 +25,7 @@ export default function WelcomeAndAboutView({
                     <div>
                         <h1 className="mainTitle">Pocket Jobs</h1>
                         <h3 className="titleDescription">An Application To Make Your Hunt For Jobs That Much Easier!</h3>
-                        <Button onClick={()=> router.push('/register')} sx={{background: 'linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% )', fontSize: '1rem', fontFamily: 'font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"', textWeight: '400'}} variant="contained">Get Started Tracking Your Jobs Today</Button>
+                        <Button onClick={()=> router.push('/signin')} sx={{background: 'linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% )', fontSize: '1rem', fontFamily: 'font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"', textWeight: '400'}} variant="contained">Get Started Tracking Your Jobs Today</Button>
                     </div>
                     
                     <Image alt='nice woman working' src={titleImage}></Image>

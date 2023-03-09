@@ -1,0 +1,31 @@
+/* .SignInDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+} */
+
+.innerSignInDiv{
+    height: 100%;
+    position: relative;
+}
+.signInHeader{
+    margin-top: 20px;
+    margin-bottom: 15%;
+}
+
+.form{
+   
+}
+
+.textField{
+    margin-bottom: 15%;
+}
+
+.signUpDiv{
+    margin-top: 15%;
+}
+
+.doNotHaveAnAccountHeader{
+    margin-bottom: 20px;
+}
