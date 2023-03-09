@@ -40,6 +40,7 @@ export default function SignInComp({
 
                 if(!doNotRedirectWhenFormIsCompleted){
                     router.push('/')
+                   
                 }
 
                 }catch(error: any){

@@ -36,7 +36,11 @@ export default function MainPage({
                 {modalChildren}
             </ModalCard>
             <div>
-                <GlassCard className='navBar'>
+                <GlassCard
+                style={{
+                    padding: '0, 25px'
+                }}
+                className='navBar'>
                     <h1 className='headerName'>Welcome {user.firstName}</h1>
                     <div className='iconsDiv'>
                         <Button onClick={()=> {

@@ -43,6 +43,7 @@ export default function SignUpComp({
               
                 console.log(response.data)
                 router.push('/')
+                
             
               }catch(error){
                 console.log(error)

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react"
 import titleImage from "@/assets/job-description-hero-banner.png"
 import Image from "next/image";
 import { useRouter } from "next/navigation"
+import axios from "axios"
 
 interface WelcomeAndAboutViewProps
 {
@@ -15,6 +16,29 @@ export default function WelcomeAndAboutView({
 
 }:WelcomeAndAboutViewProps){
     const router= useRouter()
+    useEffect(()=>{
+        async function fetchUser(){
+         
+         try{
+ 
+             const response = await axios({
+                 url: '/api/me',
+                 headers: {
+                     Accept: "application/json",
+                     "Content-Type": "application/json",
+                   }
+             })
+             
+             if(response.data){
+               window.location.reload()
+             }
+           }catch(error){
+                
+           }  
+        }
+        fetchUser()
+             
+     }, [])
 
 
     return (
