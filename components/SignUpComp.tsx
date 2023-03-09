@@ -6,6 +6,7 @@ import { register } from "@/lib/api";
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import "@/styles/components.css/SignUpComp.css"
+import { CircularProgress } from '@mui/material';
 
 interface SignUpProps
 {
@@ -73,7 +74,7 @@ export default function SignUpComp({
                     })
                     console.log(response)
                     if(!doNotRedirectWhenFormIsCompleted){
-                        //redirect function goes here
+                      router.push('/')
                     }
                 }catch(error){
                     console.log(error)
@@ -84,18 +85,21 @@ export default function SignUpComp({
             >
 
                 <div className='firstNameAndLastNameDiv'>
-                    <TextField fullWidth label='First Name' value={firstName} onChange={(e)=>  setFirstName(e.target.value)} variant='outlined'></TextField>
-                    <TextField fullWidth label='Last Name' value={lastName} onChange={(e)=> setLastName(e.target.value)} variant='outlined'></TextField>
+                    <TextField disabled={loading} fullWidth label='First Name' value={firstName} onChange={(e)=>  setFirstName(e.target.value)} variant='outlined'></TextField>
+                    <TextField disabled={loading} fullWidth label='Last Name' value={lastName} onChange={(e)=> setLastName(e.target.value)} variant='outlined'></TextField>
                 </div>
                 
 
                 <h3>User Name</h3>
                 <TextField sx={{
                     marginBottom: '10%'
-                }} value={userName} onChange={(e)=> setUserName(e.target.value)} variant='outlined'></TextField>
+                }} 
+                disabled={loading}
+                value={userName} onChange={(e)=> setUserName(e.target.value)} variant='outlined'></TextField>
 
                 <h3>Password</h3>
                 <TextField 
+                disabled={loading}
                 sx={{
                     marginBottom: '10%'
                 }} 
@@ -105,7 +109,15 @@ export default function SignUpComp({
                 sx={{
                     marginBottom: '10%'
                 }}
-                variant='contained' disabled={ firstName.trim() === '' || lastName.trim() === '' || userName.trim() === '' || password.trim() === '' ? true: false } fullWidth type='submit'>Sign Up</Button>
+                variant='contained' disabled={ firstName.trim() === '' || lastName.trim() === '' || userName.trim() === '' || password.trim() === '' || loading ? true: false } fullWidth type='submit'>
+                    
+                    {loading ? 
+                    <CircularProgress />
+                    :
+                    "Sign Up!"
+                    }
+                    
+                    </Button>
                 {SwitchBetweenLogin && setCurrentMode ? 
                 <div
                 className='haveAnAccountDiv'
