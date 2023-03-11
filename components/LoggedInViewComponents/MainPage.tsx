@@ -46,7 +46,7 @@ export default function MainPage({
                         <Button onClick={()=> {
                             setModalChildren(<CreateNewJobBoard setModalOpen={setModalOpen} refreshUserData={refreshUserData} user={user}/>)
                             setModalOpen(true)
-                            }} sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
+                            }} sx={window.innerWidth <1024 ? {} : {...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant={window.innerWidth < 1024 ? 'text' : 'contained'}>
                             <CreateTwoToneIcon sx={{marginRight: '10px'}}/>
                             Create New Job Board
                         </Button>

@@ -88,7 +88,6 @@ export default function JobBoardPage({
             
     }, [refreshUserDataState])
     console.log(jobBoard)
-    // console.log('extra columns', JSON.parse(jobBoard.extraJobColumns))
 
     if(!jobBoard && !user && triedFetchingUser){
         router.push('/signin')
@@ -112,17 +111,6 @@ export default function JobBoardPage({
         }
         return result;
       }
-
-    // function setFilteredPocketedJobs( filter: string, value: any){
-    //     const pocketedJobs = jobBoard.pocketedJobs
-    //     if(filter === 'salary'){
-    //         setFilteredJobs(pocketedJobs.filter((pocketedJob: PocketedJob)=>{
-    //             return pocketedJob.salary.includes(value.trim as string)
-    //         }))
-    //     }else{
-    //         return 
-    //     }
-    // }
 
     function determineInputType(){
         if(searchInputType === 'text'){
@@ -227,7 +215,7 @@ export default function JobBoardPage({
                     setModalOpen(true)
                     setModalChildren(<PocketAJob refreshUserData={refreshUserData} setModalOpen={setModalOpen} jobBoard={jobBoard}></PocketAJob>)
                 }}
-                sx={{...gradientButton1,  boxShadow: 'none'}} variant="contained">
+                sx={window.innerWidth <1204 ? {} : {...gradientButton1,  boxShadow: 'none'}} variant={window.innerWidth < 1024 ? "text" :"contained"} color={window.innerWidth < 1024 ? 'secondary' : 'primary'}>
                             <WorkTwoToneIcon sx={{marginRight: '10px'}}/>
                             Pocket a Job
                 </Button>

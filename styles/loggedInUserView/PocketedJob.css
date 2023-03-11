@@ -90,8 +90,8 @@
     }
     
     .noteModalDiv{
-        width: 50vh;
-        height: 50vh;
+        width: 70vw;
+        height: 70vw;
         position: absolute;
         z-index: 1000;
         cursor: auto;
