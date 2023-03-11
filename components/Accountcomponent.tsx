@@ -71,6 +71,22 @@ export default function Accountcomponent({
                     Back To Home
                 </Button>
 
+                <Button
+                onClick={async()=>{
+                    try{
+                        const response = await axios({
+                            url: '/api/log_out'
+                        })
+                        console.log(response)
+                        router.push('/')
+                    }catch(error){
+                        console.log(error)
+                    }
+                }}
+                >
+                    Log Out
+                </Button>
+
                 {/* <Button variant='contained' sx={{...gradientButton1}}>
                     View Metrics
                 </Button>

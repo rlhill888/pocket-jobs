@@ -62,7 +62,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
             createdSteps.push(createdStep)
         }catch(error){
             console.log(error)
-            res.status(404)
+            res.status(422)
             return res.json({error})
         }
     }
@@ -73,7 +73,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
 
    }catch(error){
      console.log(error)
-     res.status(404)
+     res.status(422)
      res.json({error: error})
    
    }

@@ -1,12 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { defaultColumns } from "@/lib/database";
-import { Step } from "@prisma/client";
+import { serialize } from "cookie";
 
 interface body{
-    step: Step;
-    value: boolean;
+    
 }
 
 export default async function loadToDoList(req: NextApiRequest, res: NextApiResponse){
@@ -15,17 +13,20 @@ export default async function loadToDoList(req: NextApiRequest, res: NextApiResp
     const user = await getUserFromCookie(req.cookies)
 
     
-    if(user && body.step.pocketedJob.userId === user.id){
-        const updatedStep = await db.step.update({
-            where: {
-                id: body.step.id
-            },
-            data: {
-                completed: body.value
-            }
-        })
+    if(user){
+
+        const jwt = '123'
+        res.setHeader(
+            "Set-Cookie",
+            serialize(process.env.COOKIE_NAME as string, jwt, {
+              httpOnly: true,
+              path: "/",
+              maxAge: -1,
+            })
+          );
+          res.status(201);
+        res.json('done')
         
-        res.json(updatedStep)
     }else{
         res.status(401)
         res.json({error: 'Unauthorized'})

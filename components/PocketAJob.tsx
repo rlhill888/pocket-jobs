@@ -303,10 +303,11 @@ function determineDisabledButton(){
                 }} 
                 variant='contained' color='secondary' disabled={determineDisabledButton()}>Pocket the Job</Button>
             </div>
-            
+          
             <div className='pocketAJobInputGrid'>
                 {mapOutInputs()}
             </div>
+            
             <hr className='pocketAJobH'/>
             <div>
             <div className='jobStepsCreatePocketedJob'>

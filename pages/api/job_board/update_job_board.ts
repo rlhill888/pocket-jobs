@@ -2,33 +2,34 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { defaultColumns } from "@/lib/database";
-import { Step } from "@prisma/client";
 
-interface body{
-    step: Step;
-    value: boolean;
+interface body {
+    jobBoardId: string;
+    name: string;
+    description: string;
 }
 
-export default async function loadToDoList(req: NextApiRequest, res: NextApiResponse){
+export default async function me(req: NextApiRequest, res: NextApiResponse){
    try{
-    const body = req.body
+    const body: body = req.body
     const user = await getUserFromCookie(req.cookies)
-
     
-    if(user && body.step.pocketedJob.userId === user.id){
-        const updatedStep = await db.step.update({
+    if(user){
+
+        const updateJobBoard = await db.jobBoard.update({
             where: {
-                id: body.step.id
+                id: body.jobBoardId,
             },
             data: {
-                completed: body.value
+                name: body.name,
+                description: body.description
             }
         })
-        
-        res.json(updatedStep)
+        res.json(updateJobBoard)
+       
     }else{
         res.status(401)
-        res.json({error: 'Unauthorized'})
+        res.json({error: 'unauthorized'})
     }
 
    }catch(error){

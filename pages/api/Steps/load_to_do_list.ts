@@ -42,7 +42,7 @@ export default async function loadToDoList(req: NextApiRequest, res: NextApiResp
     }
 
    }catch(error){
-      res.status(403)
+      res.status(422)
       res.json({error: error})
       console.log(error)
    

@@ -1,3 +1,5 @@
+@media screen and (max-width: 1023px){
+
 .createNewJobBoardDiv{
     position: relative;
 }
@@ -5,7 +7,7 @@
 .jobBoardFormInputs{
     position: relative;
     overflow-y: auto;
-    height: 30vh;
+    height: 40vh;
     width: 100%;
     padding: 5px 0;
 }
@@ -37,4 +39,55 @@
 
 .buttonHeader{
     margin: 0;
+}
+
+}
+
+@media screen and (min-width: 1024px){
+
+
+    .createNewJobBoardDiv{
+        position: relative;
+    }
+    
+    .jobBoardFormInputs{
+        position: relative;
+        overflow-y: auto;
+        height: 30vh;
+        width: 100%;
+        padding: 5px 0;
+    }
+    .createNewJobTitle{
+        margin: 0;
+    }
+    .createNewJobBoardHr{
+        border: .5px solid  rgba(9,111,224,1);
+    }
+    .jobBoardColumnsHr{
+        border: .5px solid  #3df5a7;
+    }
+    
+    .createNewJobBoardFlexDiv{
+        position: relative;
+        display: flex;
+        flex-direction:row;
+        justify-content: space-between;
+        width: 100%;
+    
+    }
+    
+    .jobBoardColumnsCreateNewColumn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .buttonHeader{
+        margin: 0;
+    }
+
+    
+
+
 }

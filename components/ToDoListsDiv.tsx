@@ -74,8 +74,18 @@ export default function ToDoListsDiv({
         </div>
         )
     }
+
+    if((toDosList as any).length < 1){
+        return(
+            <div>
+                <h3>You currently Do not have any To dos.</h3>
+                <h3>To create a to do, add follow up steps to a pocketed job.</h3>
+            </div>
+        )
+    }
     return (
         <div>
+        
             {(toDosList as any).map((step: aStep, index: number)=>{
                 return(
                     <MainPageToDoCheckBox setReRender={setReRender} loading={loading} refreshData={refreshData} setLoading={setLoading} setModalOpen={setModalOpen} setModalChildren={setModalChildren} crossedOut={false} key={`${step.id} to do dive key`} step={step} />

@@ -104,7 +104,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
 
             }catch(error){
                 console.log(error)
-                res.status(403)
+                res.status(422)
                 return res.json({error: error})
             }
         }
@@ -120,7 +120,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
 
             }catch(error){
                 console.log(error)
-                res.status(403)
+                res.status(422)
                 return res.json({error: error})
             }
 
@@ -143,7 +143,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
 
             }catch(error){
                 console.log(error)
-                res.status(403)
+                res.status(422)
                 return res.json({error: error})
             }
 
@@ -158,7 +158,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
     }
 
    }catch(error){
-      res.status(403)
+      res.status(422)
       res.json({error: 'error'})
       console.log(error)
    

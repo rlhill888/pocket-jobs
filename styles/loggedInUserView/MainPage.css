@@ -18,6 +18,9 @@
 white-space: nowrap;
 color: white;
   filter: drop-shadow(-3px 1px 5px #000);
+ max-width: 70%; 
+ overflow-y: auto; 
+
 }
 
 .contentFlexDiv{
@@ -89,6 +92,14 @@ color: white;
   top: 10px;
 }
 
+.noJobBoardsView{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
+
 
 
 }
@@ -110,6 +121,14 @@ color: white;
     flex-direction: row;
     justify-content: space-between;
     align-items:center;
+}
+
+.noJobBoardsView{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
 }
 
 .iconsDiv{

@@ -5,18 +5,21 @@ import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/navigation';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import { Icon } from '@mui/material';
+import JobBoardSettings from './JobBoardSettings';
 
 interface JobBoardCardProps
 {
     setModalChildren: Function;
     setModalOpen: Function;
     jobBoard: any;
+    refreshUserData: Function
 }
 
 export default function JobBoardCard({
     setModalChildren,
     setModalOpen,
     jobBoard,
+    refreshUserData,
     
 }:JobBoardCardProps){
     const router = useRouter()
@@ -30,10 +33,7 @@ export default function JobBoardCard({
                     setModalOpen(true)
                     setModalChildren(()=>{
                         return(
-                            <div>
-                                {jobBoard.name} settings
-
-                            </div>
+                            <JobBoardSettings refreshUserData={refreshUserData} setModalOpen={setModalOpen} jobBoard={jobBoard} />
                         )
                     })
                 }}

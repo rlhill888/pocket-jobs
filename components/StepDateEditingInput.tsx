@@ -47,7 +47,6 @@ export function StepDateEditingInput({
                     setNewPocketedJobValues((previous: PocketedJob)=>{
                         let copyObj = {...previous}
                         copyObj.steps[index].dueDate = e.target.value
-                        debugger
                         return copyObj
                     })
                     setRerender(previous=> previous + 1)

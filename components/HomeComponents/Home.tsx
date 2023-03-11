@@ -50,7 +50,7 @@ export default function Home({
     }, [refreshUserDataState])
 
     if(user){
-        return <LoggedInUserView refreshUserData={refreshUserData} user={user}></LoggedInUserView>
+        return <LoggedInUserView refreshUserData={refreshUserData}  user={user}></LoggedInUserView>
     }
     if(!user && !triedFetchingUser){
         return <Loading></Loading>

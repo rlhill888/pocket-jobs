@@ -64,9 +64,20 @@ export default function MainPage({
                         <h1 className='headerName subHeader'>Job Boards</h1>
                         <div className='jobBoardsList'>
                             {
+                                user.jobBoards.length < 1 ?
+                                <div className='noJobBoardsView'>
+                                    <h2>You Currently Do not Have any Job Boards</h2>
+                                    <Button
+                                    onClick={()=> {
+                                        setModalChildren(<CreateNewJobBoard setModalOpen={setModalOpen} refreshUserData={refreshUserData} user={user}/>)
+                                        setModalOpen(true)
+                                        }}
+                                    > <CreateTwoToneIcon sx={{marginRight: '10px'}}/> Create One</Button>
+                                </div>
+                                :
                                 user.jobBoards.map((jobBoard: any, index)=>{
                                     return(
-                                        <JobBoardCard jobBoard={jobBoard} key={`Job board card ${jobBoard.id} ${index}`}  setModalOpen={setModalOpen} setModalChildren={setModalChildren}/>
+                                        <JobBoardCard refreshUserData={refreshUserData} jobBoard={jobBoard} key={`Job board card ${jobBoard.id} ${index}`}  setModalOpen={setModalOpen} setModalChildren={setModalChildren}/>
                                     )
                                 })
                             }
@@ -74,7 +85,7 @@ export default function MainPage({
                         
                     </GlassCard>
                     <GlassCard className='toDosDiv'>
-                        <h1 style={{textAlign: "center"}} className='headerName subHeader'>{"To Dos"}</h1>
+                        <h1 className='headerName subHeader'>{"To Dos"}</h1>
                         <div className='toDoSettingsButton'>
                             <IconButton color='secondary'>
                                 <TuneIcon />

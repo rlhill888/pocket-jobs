@@ -8,14 +8,14 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
     const user = await getUserFromCookie(req.cookies)
 
     if(!user){
-      res.status(404)
+      res.status(401)
       res.json({error: 'unauthorized'})
     }
 
     res.json(user)
 
    }catch(error){
-      res.status(404)
+      res.status(422)
       res.json({error: 'error'})
       console.log(error)
    
