@@ -42,7 +42,6 @@ model PocketedJob{
   jobBoardId String
   jobBoard JobBoard @relation(fields: [jobBoardId], references: [id])
 
-  @@unique([userId, companyName, jobPositionName])
 }
 
 model JobBoard{

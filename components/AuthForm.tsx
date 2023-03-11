@@ -6,6 +6,7 @@ import SignInComp from './SignInComp';
 import SignUpComp from './SignUpComp';
 import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
+import Errors from './Errors';
 
 interface AuthFormProps
 {
@@ -20,6 +21,7 @@ export default function AuthForm({
     doNotRedirectWhenFormIsCompleted
 }:AuthFormProps){
    const [loading, setLoading]= useState(true)
+   const [errors, setErrors]= useState([])
    const router = useRouter()
     useEffect(()=>{
         async function fetchUser(){
@@ -60,13 +62,21 @@ export default function AuthForm({
 
     if(currentMode==='sign in'){
         return(
-            <SignInComp setCurrentMode={setCurrentMode} SwitchBetweenSignUp={switchBetweenLoginAndSignUp} doNotRedirectWhenFormIsCompleted={doNotRedirectWhenFormIsCompleted}/>
+            <div>
+                <Errors setErrors={setErrors} errors={errors}/>
+                <SignInComp setErrors={setErrors}  setCurrentMode={setCurrentMode} SwitchBetweenSignUp={switchBetweenLoginAndSignUp} doNotRedirectWhenFormIsCompleted={doNotRedirectWhenFormIsCompleted}/>
+            </div>
+            
         )
     }
 
     if(currentMode==='sign up'){
         return(
-            <SignUpComp setCurrentMode={setCurrentMode} SwitchBetweenLogin={switchBetweenLoginAndSignUp} doNotRedirectWhenFormIsCompleted={doNotRedirectWhenFormIsCompleted}/>
+            <div>
+                <Errors setErrors={setErrors} errors={errors}/>
+                <SignUpComp setErrors={setErrors} setCurrentMode={setCurrentMode} SwitchBetweenLogin={switchBetweenLoginAndSignUp} doNotRedirectWhenFormIsCompleted={doNotRedirectWhenFormIsCompleted}/>
+            </div>
+            
         )
     }
 

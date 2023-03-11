@@ -13,12 +13,14 @@ interface SignUpProps
     SwitchBetweenLogin?: Boolean;
     setCurrentMode?: Function;
     doNotRedirectWhenFormIsCompleted?: Boolean;
+    setErrors: Function;
 }
 
 export default function SignUpComp({
     SwitchBetweenLogin,
     setCurrentMode,
-    doNotRedirectWhenFormIsCompleted
+    doNotRedirectWhenFormIsCompleted,
+    setErrors
 
 }:SignUpProps){
     const router = useRouter()
@@ -51,7 +53,7 @@ export default function SignUpComp({
               }  
            }
            fetchUser()
-    })
+    }, [])
 
     const inputSx = {
         
@@ -77,6 +79,11 @@ export default function SignUpComp({
                       router.push('/')
                     }
                 }catch(error){
+                    
+                    if((error as any).response.data.error.code === 'P2002'){
+                        setErrors([`Username ${userName} has already been taken. Input a different one.`])
+
+                    }
                     console.log(error)
                     setLoading(false)
                 }

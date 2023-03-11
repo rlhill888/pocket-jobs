@@ -8,14 +8,26 @@ export default async function register(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const user = await db.user.create({
-      data: {
-        userName: req.body.userName,
-        password: await hashPassword(req.body.password),
-        firstName: req.body.firstName,
-        LastName: req.body.LastName,
-      },
-    });
+    let user
+
+    try{
+
+    try{
+      const newUser = await db.user.create({
+        data: {
+          userName: req.body.userName,
+          password: await hashPassword(req.body.password),
+          firstName: req.body.firstName,
+          LastName: req.body.LastName,
+        },
+      });
+      user = newUser
+
+    }catch(error){
+      res.status(422)
+      console.log(error)
+      return res.json({error: error})
+    }
 
     try{
       const jwt = await createJWT(user);
@@ -31,13 +43,17 @@ export default async function register(
       res.json(user);
 
     }catch(e){
-      console.log(e)
       res.status(400)
-      res.json({error: e})
+      return res.json({error: e})
     }
+  }catch(error){
+    res.status(422)
+    console.log(error)
+    return res.json({error: error})
+  }
     
   } else {
     res.status(402);
-    res.json({error: 'incorrect method'});
+    return res.json({error: 'incorrect method'});
   }
 }

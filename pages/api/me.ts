@@ -16,8 +16,7 @@ export default async function me(req: NextApiRequest, res: NextApiResponse){
 
    }catch(error){
       res.status(422)
-      res.json({error: 'error'})
-      console.log(error)
+      res.json({error: error})
    
    }
    

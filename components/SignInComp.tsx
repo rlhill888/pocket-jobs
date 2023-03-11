@@ -5,12 +5,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { signin } from "@/lib/api";
 import { useRouter } from 'next/navigation';
 import '@/styles/components.css/SignInComp.css'
+import Errors from './Errors';
 
 interface SignInProps
 {
     SwitchBetweenSignUp?: Boolean;
     setCurrentMode?: Function;
     doNotRedirectWhenFormIsCompleted?: Boolean;
+    setErrors: Function;
     
 }
 
@@ -18,6 +20,7 @@ export default function SignInComp({
     SwitchBetweenSignUp,
     setCurrentMode,
     doNotRedirectWhenFormIsCompleted,
+    setErrors
 }:SignInProps){
     const [userName, setUserName]= useState("")
     const [password, setPassword]= useState("")
@@ -28,6 +31,7 @@ export default function SignInComp({
 
     return (
         <div className='innerSignInDiv'>
+            {/* <Errors errors={errors}/> */}
             <h1 className='signInHeader'>SignIn</h1>
             <form className='form' onSubmit={async (e)=>{
                 e.preventDefault()
@@ -44,7 +48,7 @@ export default function SignInComp({
                 }
 
                 }catch(error: any){
-                    console.log(error.response.data.error)
+                    setErrors(['Invalid Username or password']) 
                     setLoading(false)
                 }
                
