@@ -1,4 +1,109 @@
-.navBar{
+@media screen and (max-width: 1023px){
+
+  .navBar{
+    margin: 30px 10px;
+    padding: 25px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.iconsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.headerName{
+white-space: nowrap;
+color: white;
+  filter: drop-shadow(-3px 1px 5px #000);
+}
+
+.contentFlexDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    margin: 20px 10px;
+
+}
+
+.toDosDiv{
+    width: auto;
+    height: 70vh;
+    margin-top: 20px;
+}
+
+.toDoSList{
+    position: relative;
+    height: 83%;
+    border-radius: 12px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+}
+
+.jobBoardListsDiv{
+    margin: 0;
+    height: 70vh;
+}
+
+.jobBoardsList{
+    position: relative;
+    height: 90%;
+    border-radius: 12px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.toDoSList{
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.jobBoardsList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .toDoSList::-webkit-scrollbar {
+    display: none;
+  }
+
+.subHeader{
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.jobBoardCard{
+    height: 15vh;
+    margin-bottom: 20px;
+
+}
+
+.toDoSettingsButton{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1024px){
+
+  .navBar{
     margin: 20px 100px;
     padding: 25px 25px;
     display: flex;
@@ -86,4 +191,6 @@ color: white;
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
 }

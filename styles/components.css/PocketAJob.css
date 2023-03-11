@@ -1,3 +1,138 @@
+@media screen and (max-width: 1023px){
+
+    .mainPocketAJobDiv{
+       
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        padding: 10px 10px;
+    }
+    
+    .flexRowDivClass{
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .pocketAJobInputGrid{
+        display: grid;
+        overflow-y: scroll;
+        position: relative;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        width: 100%;
+        height: 13vh;
+        padding: 10px 10px;
+        grid-gap: 20px;
+        margin-bottom: 20px;
+    }
+    .pocketAJobH{
+        border: 1px solid #3df5a7;
+    }
+    
+    .pocketedJobInputDiv{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    
+    .pocketedJobInputDiv2{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    .pocketedJobInputDivDate{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    .datePocketedJobInputHeader{
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: .5rem;
+    }
+    
+    .jobStepsCreatePocketedJob{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .createPocketJobStepContent{
+        overflow-y: auto;
+        height: 23vh;
+    }
+    .stepDescriptionsDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+    }
+    
+    
+    
+    .descriptionButtonAndRemoveIconDivCreatePocketedJob{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        margin-top: 30px;
+    }
+    
+    .displayFlexRowHeaderJustifyContentSpaceBetween{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .displayFlexRowHeader{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .noStepsDynamicDiv{
+    
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pocketAJobLoadingDiv{
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pocketAJobLoadingHeader{
+        font-size: 3.3rem;
+        color: black;
+        background-color: #3df5a7;
+        background-image: linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% );
+        
+        background-size: 100%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;
+    }
+    
+    .loadingHeaderAndProgressPocketAJobDiv{
+        text-align: center;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+
 .mainPocketAJobDiv{
     overflow-y: auto;
     position: relative;
@@ -125,4 +260,6 @@
 
 .loadingHeaderAndProgressPocketAJobDiv{
     text-align: center;
+}
+
 }

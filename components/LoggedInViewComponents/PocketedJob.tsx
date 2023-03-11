@@ -25,7 +25,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ModalCard from '../ModalCard';
 import EditStepsDiv from '../EditStepsDiv';
-import '@/styles/components.css/editStepsDiv.css'
+import '@/styles/components.css/editStepsDiv.css';
 import { useRouter } from 'next/navigation';
 
 
@@ -300,11 +300,11 @@ function returnDateString(date: string){
    }
     return (
         <div style={{
-            backgroundImage: `linear-gradient( 109.6deg,  ${darkenRGBValue('rgb(255,255,255)')} 11.2%, ${lightenRGBValue('rgb(255,255,255)')} 71.1% )`
+            backgroundImage: `linear-gradient( 109.6deg,  ${darkenRGBValue('rgb(255,255,255)')} 11.2%, ${lightenRGBValue('rgb(255,255,255)')} 71.1% )`,
+            overflowY: 'auto'
         }} className='mainPocketJobDiv'>
         <ThemeProvider theme={themeOptions}>
         <ModalCard
-        width={'70vw'}
         height='70vh'
         modalOpen={modalOpen} setModalOpen={setModalOpen}>
             {modalChildren}

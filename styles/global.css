@@ -1,4 +1,16 @@
 
+@media screen and (max-width: 1023px) {
+    body{
+        background-image: linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% );
+        position: relative;
+        height: 100%;
+        min-height: 100vh;
+        width: 100vw;
+        overflow-y: auto;
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+}
 body{
     background-image: linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% );
     position: relative;

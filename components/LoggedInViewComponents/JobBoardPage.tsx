@@ -95,7 +95,10 @@ export default function JobBoardPage({
         return <Loading loadingTitle='Redirecting to Sign In...'/>
     }
 
-    if(!jobBoard || !user || !valuesArray){
+    if(
+        
+        !jobBoard || !user || !valuesArray
+        ){
         return <Loading loadingTitle='Loading Your Job Board...'/>
     }
 
@@ -215,6 +218,7 @@ export default function JobBoardPage({
                 {
                 jobBoard.pocketedJobs.length >= 1 ?    
                 <Button 
+                className='pocketAJobButton'
                 onClick={()=>{
                     setModalWidthAndHeight({
                         width: "75vw",
@@ -223,7 +227,7 @@ export default function JobBoardPage({
                     setModalOpen(true)
                     setModalChildren(<PocketAJob refreshUserData={refreshUserData} setModalOpen={setModalOpen} jobBoard={jobBoard}></PocketAJob>)
                 }}
-                sx={{...gradientButton1, marginRight: "30px", boxShadow: 'none'}} variant="contained">
+                sx={{...gradientButton1,  boxShadow: 'none'}} variant="contained">
                             <WorkTwoToneIcon sx={{marginRight: '10px'}}/>
                             Pocket a Job
                 </Button>

@@ -1,3 +1,54 @@
+@media screen and (max-width: 1023px){
+    .toDoDiv{
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        justify-items: start;
+        grid-gap: 2px;
+        
+        align-items: center;
+    }
+    
+    .toDoHeader{
+        position: relative;
+        display: inline-block;
+        overflow-x: auto;
+        cursor: pointer;
+        max-width: 100%;
+        transition: all .2s;
+        white-space: nowrap;
+    }
+    
+    .crossedOutToDoDiv{
+        color: rgb(31, 31, 31);
+    }
+    .crossedOutToDoDiv:after {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 1px;
+        background: rgb(0, 204, 20);
+        content: "";
+        width: 100%;
+        display: block;
+      }
+    
+    .toDoHeader:hover{
+        text-shadow: 7px 2px 5px #3df5a7;
+    }
+
+    .graphStepperDiv{
+       
+        height: 45vh;
+        overflow-y: auto;
+
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+
 .toDoDiv{
     position: relative;
     width: 100%;
@@ -35,4 +86,12 @@
 
 .toDoHeader:hover{
     text-shadow: 7px 2px 5px #3df5a7;
+}
+.graphStepperDiv{
+       
+    height: 45vh;
+    overflow-y: auto;
+
+}
+
 }

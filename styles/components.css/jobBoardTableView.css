@@ -1,4 +1,58 @@
+@media screen and (max-width: 1023px){
 table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    overflow-x: auto;
+    overflow-y: auto;
+    background: none;
+  }
+  
+  td, th {
+    
+    text-align: left;
+    padding: 8px;
+    white-space: nowrap;
+    max-width: 70vw;
+    overflow-x: auto;
+  }
+  td{
+    border-top: 1px solid rgb(255, 255, 255);
+  }
+  
+  tr:nth-child(even) {
+    background: none;
+  }
+
+  .align-center-items-table-view{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .jobTableRow{
+    
+  }
+
+  .jobPositionHeaderTableViewJobBoard{
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @media screen and (min-width: 1024px){
+    table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     overflow-x: auto;
@@ -37,6 +91,6 @@ table {
     cursor: pointer;
   }
 
-  
+  }
 
  

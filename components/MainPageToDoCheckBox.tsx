@@ -146,8 +146,9 @@ export default function MainPageToDoCheckBox({
                 setReRender((previous: number)=> previous + 1)
                 setModalOpen(true)
                 setModalChildren(
-                <div>
+                <div className='graphStepperDiv'>
                     <Stepper
+                    orientation='vertical'
                     activeStep={activeStep}
                     color='secondary'
                     >

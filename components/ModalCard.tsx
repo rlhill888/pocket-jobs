@@ -30,8 +30,8 @@ export default function ModalCard({
         <div className='blockedOutDiv'>
             <div 
             style={{
-                height: height ? height: "50vh",
-                width: width ? width: "50vw",
+                height: height ? height: `${window.innerHeight <= 569 ? "60vh" : "50vh"}`,
+                width: width ? width: `${window.innerWidth <= 569 ? "90vw" : " 50vw"}`,
             }}
             className='innerModalDiv'>
                 <div className='childrenDiv'>

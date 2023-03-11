@@ -22,7 +22,7 @@ export default function AuthRootLayout({children}:AuthRootLayoutProps){
                 
 
 
-                {/* <div className="area" >
+                <div className="area" >
                             <ul className="circles">
                                     <li></li>
                                     <li></li>
@@ -35,7 +35,7 @@ export default function AuthRootLayout({children}:AuthRootLayoutProps){
                                     <li></li>
                                     <li></li>
                             </ul>
-                    </div > */}
+                    </div >
 
 
 

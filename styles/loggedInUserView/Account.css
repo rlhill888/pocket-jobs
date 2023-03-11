@@ -1,3 +1,69 @@
+@media screen and (max-width: 1023px){
+
+    .mainAccountDiv{
+        margin: 10px 10px;
+        overflow-y: auto;
+    }
+    
+    .otherMainAccountDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .mainAccountHeaderDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .headerNavBarButtons{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .accountInfoDivAccountView{
+        position: relative;;
+        text-align: left;
+        height: 70%;
+    }
+    .divHeight{
+        position: relative;
+        height: 55vh;
+        overflow-y: auto;
+    }
+    
+    .userNameHeader{
+        margin: 0;
+    }
+    
+    .glassContainerHeaderDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .accountInfoDiv{
+        width: auto;
+        height: 65vh;
+    }
+    
+    .accountToDosDiv{
+        width: auto;
+        height: 65vh;
+    }
+
+
+
+
+
+}
+
+
+
+@media screen and (min-width: 1024px){
 .mainAccountDiv{
     margin: 20px 100px;
     overflow-y: auto;
@@ -44,12 +110,14 @@
 }
 
 .accountInfoDiv{
-    width: 60vw;
+    width: 53vw;
     height: 65vh;
 }
 
 .accountToDosDiv{
-    width: 15vw;
+    width: 18vw;
     height: 65vh;
+}
+
 }
 

@@ -33,7 +33,7 @@ export default function SignInComp({
                 e.preventDefault()
                 setLoading(true)
                 try{
-                    const response = signin({
+                    const response = await signin({
                         password: password,
                         userName: userName
                     })

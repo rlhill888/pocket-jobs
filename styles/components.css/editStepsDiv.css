@@ -1,3 +1,27 @@
+@media screen and (max-width: 1023px){
+    .mainEditingDiv{
+        position: relative;
+        height: 65vh;
+    }
+    .subDiv{
+        border: 1px solid black;
+        border-radius: 12px;
+        height: fit-content;
+        padding: 17px;
+    }
+    
+    .gridStepsEditingDiv{
+        display: grid;
+        justify-items: center;
+        grid-template-columns: 1fr ;
+        overflow-y: auto;
+        grid-gap: 10px;
+    }
+}
+
+
+@media screen and (min-width: 1024px){
+
 .mainEditingDiv{
     position: relative;
     height: 55vh;
@@ -15,4 +39,5 @@
     grid-template-columns: 1fr 1fr 1fr;
     overflow-y: auto;
     grid-gap: 10px;
+}
 }

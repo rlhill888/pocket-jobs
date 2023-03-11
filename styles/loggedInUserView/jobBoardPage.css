@@ -1,3 +1,111 @@
+@media screen and (max-width: 1023px){
+
+    .mainJobBoardDiv{
+        margin: 10px 10px;
+        overflow-y: auto;
+    }
+    
+    .otherMainJobBoardDiv{
+        overflow-y: auto;
+    }
+    .pocketAJobButton{
+       
+    }
+    
+    .jobBoardName{
+        margin: 0;
+        text-align: left;
+        white-space: nowrap;
+        max-width: 90%;
+        overflow-x: auto;
+    }
+    .searchDiv{
+        text-align: left;
+        min-width: fit-content;
+        width: 30%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 15px
+    
+    }
+    .jobBoardHeaderDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .jobsListDiv{
+        
+        overflow-y: auto;
+        height: 50vh;
+    }
+    .jobDiv{
+        position: relative;
+        height: 40px;
+        width: 100%;
+        border-radius: 12px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        background-image: linear-gradient( 109.6deg,  rgb(240, 240, 240) 11.2%, rgba(9, 109, 224, 0) 91.1% );
+        padding-left: 10px;
+    }
+    
+    .jobName{
+        color: black;
+        margin-left: 10px;
+    }
+    
+    .jobDetailsDiv{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+    
+    .pocketedJobCCardDataDiv{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto;
+    }
+    
+    .pocketedJobCardDivisionDiv{
+        position: relative;
+        height: 50%;
+        margin-left: 10px
+        
+    }
+    
+    .doNotHaveAnyPocketedJobsDiv{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pocketedJobCardInformationDiv{
+        display: flex;
+        flex-direction: row;
+        margin-left: 10px;
+        margin-right: 10px;
+        align-items: center;
+    }
+    
+    .keepHeaderOnOneLine{
+        white-space: nowrap;
+    }
+
+}
+
+
+@media screen and (min-width: 1024px){
 .mainJobBoardDiv{
     margin: 20px 100px;
     overflow-y: auto;
@@ -5,6 +113,10 @@
 
 .otherMainJobBoardDiv{
     overflow-y: auto;
+}
+
+.pocketAJobButton{
+    margin-right: 30px;
 }
 
 .jobBoardName{
@@ -90,4 +202,5 @@
 
 .keepHeaderOnOneLine{
     white-space: nowrap;
+}
 }

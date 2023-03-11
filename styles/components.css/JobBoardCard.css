@@ -1,3 +1,39 @@
+@media screen and (max-width: 1023px) {
+    .jobBoardCard{
+        height: 15vh;
+        margin-bottom: 20px;
+        color: black;
+    
+    }
+    
+    .headerDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header{
+        margin: 0;
+        color: black;
+        max-width: 60%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .jobBoardCardDescriptionDiv{
+        border-top: 1px solid #3df5a7;
+        text-align: left;
+        overflow-y: auto;
+    }
+    
+    .pTagJobBoardCard{
+        color: black;
+    }
+
+
+}
+@media screen and (min-width: 1024px){
 .jobBoardCard{
     height: 15vh;
     margin-bottom: 20px;
@@ -15,6 +51,8 @@
 .header{
     margin: 0;
     color: black;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 .jobBoardCardDescriptionDiv{
@@ -25,4 +63,5 @@
 
 .pTagJobBoardCard{
     color: black;
+}
 }

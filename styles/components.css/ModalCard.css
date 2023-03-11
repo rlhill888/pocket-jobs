@@ -1,3 +1,6 @@
+
+
+@media screen and (max-width: 1023px){
 .blockedOutDiv{
     z-index: 1000;
     position: fixed;
@@ -24,12 +27,52 @@
 }
 .childrenDiv{
     position: relative;
-    margin: 12px;
-    padding: 40px;
+    padding: 10px;
     overflow-y: auto;
 }
 .xButton{
     position: absolute;
     top: 0;
     right: 0;
+}
+}
+
+@media screen and (min-width: 1024px){
+
+    .blockedOutDiv{
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.744);
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        
+    }
+    .innerModalDiv{
+        position: relative;
+        height: 50vh;
+        width: 50vw;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 20px rgba(61,245,167,1),
+                0 0 20px -2px rgba(9,111,224,1),
+                0 0 30px 0px rgba(61,245,167,1);
+                border-radius: 20px;;
+    }
+    .childrenDiv{
+        position: relative;
+        margin: 12px;
+        padding: 40px;
+        overflow-y: auto;
+    }
+    .xButton{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    
 }
