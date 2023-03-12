@@ -38,14 +38,27 @@ export default function CreateNewNote({
                                     value={newNNoteDescription}
                                     onChange={(e)=> setNewNoteDescription(e.target.value)}
                                     sx={{marginTop: '20px', 
-                                    }} inputProps={{
+                                    }} inputProps={window.innerWidth > 1203 ? {
                                         style: {
                                             position: 'relative',
                                             height: '25vh',
                                             color: 'white',
                                             textOverflow: "ellipsis", overflow: "hidden"
                                         }
-                                    }}  label='New Note Description' fullWidth />
+                                    }
+
+                                    :
+
+                                    {
+                                        style: {
+                                            position: 'relative',
+                                            height: '15vh',
+                                            color: 'white',
+                                            textOverflow: "ellipsis", overflow: "hidden"
+                                        }
+                                    }
+                                
+                                }  label='New Note Description' fullWidth />
                                     <Button
                                     onClick={(e)=>{
                                         if(e.detail == 2){
