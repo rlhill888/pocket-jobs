@@ -1,4 +1,10 @@
 @media screen and (max-width: 1023px){
+
+    .stepNameAndExitButton{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
     .mainPocketJobDiv{
         width:100vw;
         height: 100vh;
@@ -198,6 +204,13 @@
 
 
 @media screen and (min-width: 1024px){
+
+
+.stepNameAndExitButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .mainPocketJobDiv{
     width:100vw;
     height: 100vh;

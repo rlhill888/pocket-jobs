@@ -329,12 +329,24 @@ function determineDisabledButton(){
             </div>
             <div className='createPocketJobStepContent'>
 
-                <Stepper>
+                <Stepper orientation={window.innerWidth < 1024 ? 'vertical' : 'horizontal'}>
                 {steps.map((step: aStep, index)=>{
                 return(
                     <Step key={` create pocked job name step ${step.id}`}>
+                        <div className='stepNameAndExitButton'>
                         <StepLabel>
-                            <TextField  value={step.name} onChange={(e)=>{
+                        <IconButton 
+                                        onClick={(e)=>{
+                                            setSteps((previous: aStep[])=>{
+                                                let copyArray= [...previous]
+                                                copyArray.splice(index, 1)
+                                                return copyArray
+                                            })
+                                        }} 
+                                        sx={{color: 'red'}}>
+                                            <CancelTwoToneIcon />
+                                        </IconButton>
+                            <TextField  placeholder={`Name for Step ${index + 1}`} value={step.name} onChange={(e)=>{
                                 setSteps((previous: aStep[])=>{
                                     let copyArray = [...previous]
                                     copyArray[index].name = e.target.value
@@ -342,6 +354,8 @@ function determineDisabledButton(){
                                 })
                             }} variant='standard' color={index % 2 ? 'primary' : 'secondary'}></TextField>
                         </StepLabel>
+
+                        </div>
                     </Step>
                 )
                  })}
@@ -393,17 +407,6 @@ function determineDisabledButton(){
                         }else{
                             return(
                                 <div className='descriptionButtonAndRemoveIconDivCreatePocketedJob' key={`step description create pocketed job  ${step.id}`}>
-                                    <IconButton 
-                                    onClick={(e)=>{
-                                        setSteps((previous: aStep[])=>{
-                                            let copyArray= [...previous]
-                                            copyArray.splice(index, 1)
-                                            return copyArray
-                                        })
-                                    }} 
-                                    sx={{color: 'red'}}>
-                                        <CancelTwoToneIcon />
-                                    </IconButton>
                                     <Button sx={{width: "auto"}}
                                     onClick={()=>{
                                         setSteps((previous: aStep[])=>{
