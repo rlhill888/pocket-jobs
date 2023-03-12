@@ -1,5 +1,5 @@
-'use client'
-import React, { useCallback, useState } from 'react';
+
+import React from 'react';
 import axios from 'axios';
 import { getUserFromCookie } from '@/lib/auth';
 import { cookies } from "next/headers";
