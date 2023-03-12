@@ -18,7 +18,7 @@ interface HomeProps
 export default function Home({
 
 }:HomeProps){
-    const [user, setUser]: [User | null, Function]= useState(null)
+    const [user, setUser]: [User | null, Function]= useState({})
     const [triedFetchingUser, setTriedFetchingUser]= useState(false)
     const [refreshUserDataState, setRefreshUserData]= useState(0)
     const router = useRouter()
