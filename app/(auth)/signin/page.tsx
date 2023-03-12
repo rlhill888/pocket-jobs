@@ -1,7 +1,5 @@
 'use client'
-import '@/styles/auth/signin.css'
-import TextField from '@mui/material/TextField';
-import SignInComp from "@/components/SignInComp"
+import '@/styles/auth/signin.css';
 import AuthForm from '@/components/AuthForm';
 
 interface SignInProps{

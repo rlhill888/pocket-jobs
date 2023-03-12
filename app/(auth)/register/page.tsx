@@ -1,6 +1,5 @@
 'use client'
 import AuthForm from "@/components/AuthForm";
-import SignUpComp from "@/components/SignUpComp";
 import "@/styles/auth/register.css"
 
 interface registerProps

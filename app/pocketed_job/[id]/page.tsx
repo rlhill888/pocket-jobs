@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
-import "@/styles/loggedInUserView/PocketedJob.css"
-import { darkenRGBValue, lightenRGBValue } from '@/lib/theme';
+import "@/styles/loggedInUserView/PocketedJob.css";
 import PocketedJob from '@/components/LoggedInViewComponents/PocketedJob';
 
 interface pageProps

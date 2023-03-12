@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "@/styles/loggedInUserView/Account.css"
 import GlassCard from './GlassCard';
-import { Button, IconButton } from '@mui/material';
-import { gradientButton1 } from '@/styles/materialUiStyles';
+import { Button } from '@mui/material';
 import KeyboardBackspaceTwoToneIcon from '@mui/icons-material/KeyboardBackspaceTwoTone';
-import TuneIcon from '@mui/icons-material/Tune';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Loading from './Loading';
