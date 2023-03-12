@@ -87,9 +87,9 @@ export default function MainPage({
                     <GlassCard className='toDosDiv'>
                         <h1 className='headerName subHeader'>{"To Dos"}</h1>
                         <div className='toDoSettingsButton'>
-                            <IconButton color='secondary'>
+                            {/* <IconButton color='secondary'>
                                 <TuneIcon />
-                            </IconButton>
+                            </IconButton> */}
 
                         </div>
                         <div className='toDoSList'>

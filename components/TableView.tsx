@@ -189,6 +189,15 @@ export default function TableView({
                                             </td>
                                         )
                                     }
+                                    if(jobColumn.columnType === 'link'){
+                                        return(
+                                            <td
+                                            key={`job board job ${job.id} extra tr column ${index1} ${index}`}
+                                            >
+                                                <a href={`${jobColumn.value}`}>{job.companyName} at {job.jobPositionName} {jobColumn.columnName}</a>
+                                            </td>
+                                        )
+                                    }
                                     if(jobColumn.columnType === 'color'){
                                         return(
                                             <td

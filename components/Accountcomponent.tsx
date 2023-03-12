@@ -97,9 +97,9 @@ export default function Accountcomponent({
             <GlassCard className='accountInfoDiv'>
                 <div className='glassContainerHeaderDiv'>
                 <h3>Account Info</h3>
-                <IconButton color='primary' >
+                {/* <IconButton color='primary' >
                             <TuneIcon />  
-                </IconButton>
+                </IconButton> */}
 
                 </div>
                 <div className='accountInfoDivAccountView'>
@@ -113,9 +113,9 @@ export default function Accountcomponent({
                 <div>
                 <div className='glassContainerHeaderDiv'>
                     <h3>To Dos</h3>
-                    <IconButton color='primary' >
+                    {/* <IconButton color='primary' >
                             <TuneIcon />  
-                    </IconButton>
+                    </IconButton> */}
                 </div>
                 <div className='divHeight'>
                     <ToDoListsDiv setModalOpen={setModalOpen} setReRender={setReRender} setModalChildren={setModalChildren}/>

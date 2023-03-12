@@ -53,6 +53,7 @@ export default function SignUpComp({
               }  
            }
            fetchUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const inputSx = {

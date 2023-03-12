@@ -45,6 +45,7 @@ export default function AuthForm({
         }
         fetchUser()
              
+     // eslint-disable-next-line react-hooks/exhaustive-deps
      }, [])
     const [currentMode, setCurrentMode]= useState(mode)
     if(loading){
