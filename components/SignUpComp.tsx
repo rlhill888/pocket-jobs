@@ -46,7 +46,6 @@ export default function SignUpComp({
               
                 console.log(response.data)
                 router.push('/')
-                
             
               }catch(error){
                 console.log(error)
@@ -78,6 +77,7 @@ export default function SignUpComp({
                     console.log(response)
                     if(!doNotRedirectWhenFormIsCompleted){
                       router.push('/')
+                      setTimeout(()=> window.location.reload(), 1000)
                     }
                 }catch(error){
                     

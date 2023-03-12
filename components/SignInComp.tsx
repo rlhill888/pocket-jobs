@@ -44,7 +44,7 @@ export default function SignInComp({
 
                 if(!doNotRedirectWhenFormIsCompleted){
                     router.push('/')
-                   
+                    setTimeout(()=> window.location.reload(), 1000)
                 }
 
                 }catch(error: any){

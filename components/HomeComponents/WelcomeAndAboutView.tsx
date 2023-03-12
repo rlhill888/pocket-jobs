@@ -30,7 +30,7 @@ export default function WelcomeAndAboutView({
              })
              
              if(response.data){
-               window.location.reload()
+            //    window.location.reload()
              }
            }catch(error){
                 

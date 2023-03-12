@@ -36,6 +36,7 @@ export default function AuthForm({
              
              if(response.data){
                 router.push('/')
+                setTimeout(()=> window.location.reload(), 500)
              }
            }catch(error){
                 setLoading(false)
