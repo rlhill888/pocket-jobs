@@ -1,8 +1,6 @@
 'use-client'
 import React, { useEffect, useState } from 'react';
-import { cookies } from "next/headers";
 import axios from 'axios';
-import { grabUser } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import LoggedInUserView from './LoggedInUserView';
 import WelcomeAndAboutView from './WelcomeAndAboutView';
