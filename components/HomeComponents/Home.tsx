@@ -18,7 +18,7 @@ interface HomeProps
 export default function Home({
 
 }:HomeProps){
-    const [user, setUser]: [User | null, Function]= useState({})
+    const [user, setUser]: [User | null, Function]= useState(null)
     const [triedFetchingUser, setTriedFetchingUser]= useState(false)
     const [refreshUserDataState, setRefreshUserData]= useState(0)
     const router = useRouter()
@@ -55,11 +55,14 @@ export default function Home({
     if(!user && !triedFetchingUser){
         return <Loading></Loading>
     }
+    else{
+        return (
+            <div>
+                <WelcomeAndAboutView />
+            </div>
+        )
 
-    return (
-        <div>
-            <WelcomeAndAboutView />
-        </div>
-    )
+    }
+
 
 }
