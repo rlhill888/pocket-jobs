@@ -15,7 +15,9 @@ interface HomeProps
     
 }
 
-export default function Home({
+
+
+function Home({
 
 }:HomeProps){
     const [user, setUser]: [User | null, Function]= useState(null)
@@ -66,3 +68,5 @@ export default function Home({
 
 
 }
+
+export default Home
