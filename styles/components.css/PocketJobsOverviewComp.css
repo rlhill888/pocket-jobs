@@ -1,0 +1,184 @@
+@media screen and (max-width: 1023px) {
+    .mainOverViewSection{
+        height: fit-content;
+        width: 100vw;
+    }
+    .whatIsPocketJobs{
+        width: auto;
+        position: relative;
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 25px;
+        margin: 0;
+    }
+
+    .h1{
+        font-size: 3rem;
+        background-color: #ffffff;
+        background-image: linear-gradient(45deg, #3df5a7, rgba(9,111,224,1));
+        background-size: 100%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;
+    }
+    .makingYourFirstJobBoard{
+        padding: 25px;
+        height: fit-content;
+        flex-direction: column;
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        display: flex;
+        flex-direction: center;
+        width: auto;
+    }
+    .textAlignLeft{
+        text-align: left;
+    }
+  
+    .h3{
+        font-size: 1.5rem;
+        
+    }
+
+    .hr{
+        border: 1px solid #3df5a7;
+    }
+
+    .fiftyPercentWidth{
+       
+    }
+
+    .flexGridWithOneImage{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .pocketingAJob{
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .pocketedJobDetails{
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+
+    }
+    .image{
+        width: 100%;
+        height: fit-content;
+    }
+
+    .flexImageDiv{
+        position: relative;
+        width: 80vw;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+    .mainOverViewSection{
+        height: fit-content;
+        width: 100vw;
+    }
+    .whatIsPocketJobs{
+        width: auto;
+        position: relative;
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 25px;
+        margin: 0;
+    }
+
+    .h1{
+        font-size: 3rem;
+        background-color: #ffffff;
+        background-image: linear-gradient(45deg, #3df5a7, rgba(9,111,224,1));
+        background-size: 100%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;
+    }
+    .makingYourFirstJobBoard{
+        padding: 25px;
+        height: fit-content;
+        flex-direction: column;
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        display: flex;
+        flex-direction: center;
+        width: auto;
+    }
+    .textAlignLeft{
+        text-align: left;
+    }
+  
+    .h3{
+        font-size: 1.5rem;
+        
+    }
+
+    .hr{
+        border: 1px solid #3df5a7;
+    }
+
+    .fiftyPercentWidth{
+        width: 40vw;
+    }
+
+    .flexGridWithOneImage{
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .pocketingAJob{
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .pocketedJobDetails{
+        background-color:rgb(62, 62, 62) ;
+        color: white;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+
+    }
+    .image{
+        width: 100%;
+        height: fit-content;
+    }
+
+    .flexImageDiv{
+        position: relative;
+        width: 45vw;
+    }
+
+}
+

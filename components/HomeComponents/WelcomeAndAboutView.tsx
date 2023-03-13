@@ -1,3 +1,5 @@
+'use client'
+
 import "@/styles/home/WelcomeAndAbout.css"
 import { Button } from "@mui/material"
 import Lottie from "lottie-web"
@@ -6,6 +8,8 @@ import titleImage from "@/assets/job-description-hero-banner.png"
 import Image from "next/image";
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import PocketJobsOverviewComp from "../PocketJobsOverviewComp";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface WelcomeAndAboutViewProps
 {
@@ -39,8 +43,10 @@ export default function WelcomeAndAboutView({
         fetchUser()
              
      }, [])
+     useEffect(()=>{
+        console.log(window.scrollY)
 
-
+     }, [window.scrollY])
     return (
         <div className="WelcomeAndAboutView">
             
@@ -56,8 +62,13 @@ export default function WelcomeAndAboutView({
                     className="welcomeImage"
                     alt='nice woman working' src={titleImage}></Image>
                 </div>
+                <div className="scrollDownDiv">
+                    <h2>See How To Use Pocket Jobs</h2>
+                    <ExpandMoreIcon  />
+                </div>
                 
             </div>
+            <PocketJobsOverviewComp />
             {/* <div className="mainContentDiv">
                 <div style={{margin: '40px'}} className="glowing-card">
                     <h1>Description</h1>
