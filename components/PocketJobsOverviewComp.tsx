@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import "@/styles/components.css/PocketJobsOverviewComp.css"
 import GlassCard from './GlassCard';
@@ -16,6 +18,8 @@ import image8 from "@/assets/pocket jobs overview pictures/8.png"
 import image9 from "@/assets/pocket jobs overview pictures/9.png"
 import image9_5 from "@/assets/pocket jobs overview pictures/9, 5.png"
 import image10 from "@/assets/pocket jobs overview pictures/10.png"
+import { Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 interface PocketJobsOverviewCompProps
 {
@@ -25,10 +29,14 @@ interface PocketJobsOverviewCompProps
 export default function PocketJobsOverviewComp({
 
 }:PocketJobsOverviewCompProps){
-
+    const router = useRouter()
     return (
         <div className='mainOverViewSection'>
-            <div className='whatIsPocketJobs'>
+            <div 
+            style={{
+                paddingTop: '100px'
+            }}
+            className='whatIsPocketJobs'>
                 <h1 className='h1'>What is Pocket Jobs?</h1>
                 <h3 className='h3'>Pocket Jobs is an innovative application that simplifies the job search process by enabling users to easily keep track of the jobs they apply for, along with relevant data and follow-up steps for each opportunity. Here is a step-by-step guide on how to use Pocket Jobs effectively.</h3>
 
@@ -223,8 +231,9 @@ export default function PocketJobsOverviewComp({
                     textAlign: 'center'
                 }}
                 className='h1'>
-                    {`To summarize this application, Pocket Jobs is a fantastic tool for people who want to keep track of their job applications and follow-up steps in an organized and efficient manner.`}
+                    {`To summarize this application, Pocket Jobs is a fantastic tool for people who want to keep track of their job applications and follow-up steps in an organized and efficient manner!`}
                 </h1>
+                <Button  fullWidth className="welcomeButton" onClick={()=> router.push('/signin')} sx={{background: 'linear-gradient( 109.6deg,  #3df5a7 11.2%, rgba(9,111,224,1) 91.1% )', fontSize: '1rem', fontFamily: 'font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"', textWeight: '400'} } variant="contained">Get Started Tracking Your Jobs Today</Button>
 
             </div>
 
