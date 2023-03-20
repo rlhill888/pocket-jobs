@@ -61,7 +61,6 @@ export default function CreateNewJobBoardTr({
                     <MenuItem value={"checkbox"}>Check Box</MenuItem>
                     <MenuItem value="date">Date</MenuItem>
                     <MenuItem value="link">Link</MenuItem>
-                    <MenuItem value="file">File</MenuItem>
                     <MenuItem value="phone number">Telephone Number</MenuItem>
                     <MenuItem value="email">Email</MenuItem>
                     <MenuItem value="color">Color</MenuItem>
