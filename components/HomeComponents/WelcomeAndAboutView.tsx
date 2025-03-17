@@ -43,10 +43,6 @@ export default function WelcomeAndAboutView({
         fetchUser()
              
      }, [])
-     useEffect(()=>{
-        console.log(window.scrollY)
-
-     }, [window.scrollY])
     return (
         <div className="WelcomeAndAboutView">
             
