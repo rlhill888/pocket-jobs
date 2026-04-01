@@ -1,6 +1,6 @@
 How to Use Pocket Jobs
 
-Pocket Jobs is an innovative application that simplifies the job search process by enabling users to easily keep track of the jobs they apply for, along with relevant data and follow-up steps for each opportunity. Here is a step-by-step guide on how to use Pocket Jobs effectively.
+Pocket Jobs is a small project I built to get more familiar with TypeScript and Next.js. It’s a simple application that helps users keep track of job applications, along with basic details and follow-up steps for each opportunity.
 
 Creating a Job Board
 
@@ -20,5 +20,5 @@ Completing Follow-Up Steps
 
 Within the steps section of a pocketed job page, you can mark the steps as complete or incomplete, edit or delete previous steps, and add new steps if needed. You can also view a list of your to-dos on the homepage, which includes all the steps you have created for the jobs you have pocketed, along with their corresponding due dates.
 
-To summarize this application, Pocket Jobs is a fantastic tool for people searching for jobs who want to keep track of their job applications and follow-up steps in an organized and efficient manner.
+To summarize this application, Pocket Jobs is a cool tool for people searching for jobs who want to keep track of their job applications and follow-up steps in an organized and efficient manner.
 
